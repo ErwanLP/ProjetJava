@@ -18,7 +18,7 @@ public class ProjetJava {
     }
 
     public static void menuPrincipale() {
-        
+
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------");
         System.out.println("MENU");
@@ -48,18 +48,17 @@ public class ProjetJava {
 
     public static void jouer() {
 
-        Scanner sc = new Scanner(System.in);
         char[][] tab = new char[10][11];
         Position p = new Position();
         GenererTab(tab, p);
         // reboucler ici
         Affichertab(tab);
         NombreAleat();
-        
+
     }
 
     public static void GenererTab(char[][] tab, Position pCour) {
-        
+
         // Systeme de comptage ne pas supprimer
         /*System.out.println(pCour);
          System.out.println(compt);
@@ -72,7 +71,7 @@ public class ProjetJava {
     }
 
     public static void Affichertab(char[][] tab) {
-        
+
         System.out.println("-----------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
         // be careful affiche pas dans le bon sens mais ya de l'idée
@@ -86,7 +85,8 @@ public class ProjetJava {
     }
 
     public static void NombreAleat() {
-        
+
+        Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
         //Jeton j = new Jeton();
