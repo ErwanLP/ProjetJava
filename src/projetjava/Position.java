@@ -22,7 +22,7 @@ public class Position {
 
     Position() {
         this.x = 0;
-        this.y = 9;
+        this.y = 0;
 
     }
 

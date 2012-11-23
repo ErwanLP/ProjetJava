@@ -6,6 +6,8 @@ import java.util.Scanner;
 /*int valeur = 1 + r.nextInt(37 - 1);*/
 public class ProjetJava {
 
+    static int compt = 0;
+
     public static void main(String[] args) {
 
         menuPrincipale();
@@ -24,8 +26,8 @@ public class ProjetJava {
         System.out.println("3-trois");
         System.out.println("-----------------------------------------------------------");
         System.out.println("Votre choix ?");
-        int choix = sc.nextInt();
-        String monthString;
+        // int choix = sc.nextInt();
+        int choix = 1;
         switch (choix) {
             case 1:
                 jouer();
@@ -46,52 +48,34 @@ public class ProjetJava {
 
     public static void jouer() {
 
-        int n = 12;
-        int m = 12;
-        int[][] grille = new int[10][10];
-        char[][] tabVide = new char[12][12];
+
         char[][] tab = new char[10][11];
         Position p = new Position();
-        GenereTableauVide(tabVide, n, m);
-        AfficheGrille(grille);
-
-
-
+        GenererTab(tab, p);
+        Affichertab(tab);
     }
 
-    public static void GenereTableauVide(char[][] tabVide, int n, int m) {
-        int i;
-        int j;
-        char caractere = 'o';
-        for (i = 0; i < n; i++) {
-            for (j = 0; j < m; j++) {
-                tabVide[i][j] = caractere;
-            }
+    public static void GenererTab(char[][] tab, Position pCour) {
+        /*System.out.println(pCour);
+         System.out.println(compt);
+         compt++;*/
+        if (pCour.x != 10 || pCour.y != 9) {
+            tab[pCour.x][pCour.y] = '*';
+            GenererTab(tab, Position.suivant(pCour));
+
         }
     }
 
-    public static void AfficheGrille(int[][] grille) {
-        int i;
-        int j;
-        for (i = 0; i < grille.length; i++) {
-            System.out.println("");
-            for (j = 0; j < grille[i].length; j++) {
-                System.out.print("#\t");
+    public static void Affichertab(char[][] tab) {
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                System.out.print(tab[i][j] + "\t");
+
             }
+            System.out.println();
+
         }
-        System.out.println();
+
+
     }
-    
-    public static void GenererTab(char[][] tab, Position p){
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
 }
