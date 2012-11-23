@@ -20,7 +20,7 @@ public class ProjetJava {
        /* init();*/
         /*genereTabNbAleat();*/
         //genereNbAleat();
-      
+        genereGrille()
     }
 
     public static void init() {
@@ -36,12 +36,12 @@ public class ProjetJava {
 
         int i;
         int j;
-        char caractere = '#';
+        char caractere = ' ';
         for (i = 0; i < n; i++) {
             for (j = 0; j < m; j++) {
-                if ((i != 1 || j != 1) && (i != 1 || j != 2) && (i != 1 || j != 3) && (i != 1 || j != 4) && (i != 1 || j != 5) && (i != 1 || j != 6) && (i != 2 || j != 6) && (i != 3 || j != 6) && (i != 4 || j != 6) && (i != 2 || j != 6) && (i != 5 || j != 6) && (i != 6 || j != 6) && (i != 7 || j != 6) && (i != 8 || j != 6) && (i != 9 || j != 6) && (i != 10 || j != 6) && (i != 10 || j != 7) && (i != 10 || j != 8) && (i != 10 || j != 9) && (i != 10 || j != 10) && (i != 10 || j != 11)) {
-                    tab[i][j] = caractere;
-                }
+
+                tab[i][j] = caractere;
+
 
             }
         }
@@ -90,6 +90,6 @@ public class ProjetJava {
             }
 
         }
-     /*   afficheGrille(tabNbAleat, 2, 39);*/
+        /*   afficheGrille(tabNbAleat, 2, 39);*/
     }
 }
