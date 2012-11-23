@@ -24,8 +24,8 @@ public class ProjetJava {
         System.out.println("1-jouer");
         System.out.println("2-deux");
         System.out.println("3-trois");
-        System.out.println("-----------------------------------------------------------");
-        System.out.println("Votre choix ?");
+
+        System.out.println("Votre choix ? (automatiquement 1 pour les tests)");
         // int choix = sc.nextInt();
         int choix = 1;
         switch (choix) {
@@ -52,7 +52,16 @@ public class ProjetJava {
         char[][] tab = new char[10][11];
         Position p = new Position();
         GenererTab(tab, p);
+        System.out.println("-----------------------------------------------------------");
+        // reboucler ici
+        System.out.println("VOTRE GRILLE ACTUELLE:");
         Affichertab(tab);
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("TIRAGE JETON:");
+        Jeton j = new Jeton();
+        int valeurJeton = j.valeur;
+        System.out.println("Le jeton tiré est le :\t"+valeurJeton);
+
     }
 
     public static void GenererTab(char[][] tab, Position pCour) {
