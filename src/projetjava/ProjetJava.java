@@ -54,7 +54,7 @@ public class ProjetJava {
         // reboucler ici
         Affichertab(tab);
         NombreAleat();
-
+        Placement();
     }
 
     public static void GenererTab(char[][] tab, Position pCour) {
@@ -93,12 +93,18 @@ public class ProjetJava {
         //int valeurJeton = j.valeur;
         // bon ca marchepas,  imaginons que le chiffre soit 5
         System.out.println("Le jeton tiré est le :\t" + "5");
+    }
+
+    public static void Placement() {
+
+        Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------");
         System.out.println("SELECTION EMPLACEMENT:");
         System.out.println("Choix Abscisse du Jeton : ");
         int choixAbscisse = sc.nextInt();
         System.out.println("Choix Ordonne du Jeton");
         int choixOrdonnee = sc.nextInt();
+        System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
 
     }
 }
