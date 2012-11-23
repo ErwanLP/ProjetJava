@@ -8,20 +8,20 @@ package projetjava;
  *
  * @author Erwan
  */
-public class Point {
+public class Position {
 
     String abscisse;
     int ordonnee;
     int valeur;
 
-    Point(String abscisse, int ordonnee) {
+    Position(String abscisse, int ordonnee) {
         this.abscisse = abscisse;
         this.ordonnee = ordonnee;
 
     }
 
     public String toString() {
-        String result = "Point:\n";
+        String result = "Point:";
         result += "\n Abssice:\t" + abscisse;
         result += "\n Ordonnee:\t" + ordonnee;
         return result;
