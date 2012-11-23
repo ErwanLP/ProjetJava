@@ -10,7 +10,7 @@ package projetjava;
  */
 public class Position {
 
-   int x;
+    int x;
     int y;
     int valeur;
 
@@ -19,13 +19,12 @@ public class Position {
         this.y = y;
 
     }
-    
-        Position() {
+
+    Position() {
         this.x = 0;
         this.y = 9;
 
     }
-
 
     public String toString() {
         String result = "Point:";
@@ -35,16 +34,13 @@ public class Position {
     }
 
     public static Position suivant(Position p) {
-        if (p.x<5 && p.y == 9) {
+        if (p.x < 5 && p.y == 9) {
             return new Position(p.x + 1, p.y);
-        } 
-        if (p.x==5 && p.y > 0) {
-            return new Position(p.x,p.y+1);
         }
-        else{
-            return new Position(p.x+1,p.y);
+        if (p.x == 5 && p.y > 0) {
+            return new Position(p.x, p.y + 1);
+        } else {
+            return new Position(p.x + 1, p.y);
         }
-        
-       
     }
 }
