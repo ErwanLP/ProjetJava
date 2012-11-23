@@ -10,86 +10,37 @@ package projetjava;
  */
 public class Position {
 
-    String abscisse;
-    int ordonnee;
+    int x;
+    int y;
     int valeur;
 
-    Position(String abscisse, int ordonnee) {
-        this.abscisse = abscisse;
-        this.ordonnee = ordonnee;
+    Position(int x, int y) {
+        this.x = x;
+        this.y = y;
+
+    }
+
+    Position() {
+        this.x = 0;
+        this.y = 9;
 
     }
 
     public String toString() {
         String result = "Point:";
-        result += "\n Abssice:\t" + abscisse;
-        result += "\n Ordonnee:\t" + ordonnee;
+        result += "\n Abssice:\t" + x;
+        result += "\n Ordonnee:\t" + y;
         return result;
     }
 
-    public void crediter(int somme) {
-        if (somme > 0) {
-            solde = solde + somme;
-            System.out.println("votre compte a été crediter de:\t" + somme);
-            releveCompte += "OPERATION :\t" + somme + "\tDE CREDITER \n";
+    public static Position suivant(Position p) {
+        if (p.x < 5 && p.y == 9) {
+            return new Position(p.x + 1, p.y);
+        }
+        if (p.x == 5 && p.y > 0) {
+            return new Position(p.x, p.y + 1);
         } else {
-            System.out.println("Vous ne pouvez pas credité d un montant negatif");
-
+            return new Position(p.x + 1, p.y);
         }
     }
-
-    public boolean debiter(int somme) {
-        if (somme > 0) {
-            if ((somme < debitMax) && (solde - somme > -decouvertMax)) {
-                solde = solde - somme;
-                System.out.println("votre compte a été debité de:\t" + somme);
-                releveCompte += "OPERATION :\t" + somme + "\tDE DEBITER \n";
-                return true;
-            } else {
-                System.out.println("Votre compte n a pas été debité");
-                return false;
-            }
-
-        } else {
-            System.out.println("Vous ne pouvez pas debiter d un montant negatif");
-            return false;
-        }
-    }
-
-    public boolean virementVers(int somme, Compte c) {
-        if (somme > 0) {
-            if (solde - somme > -decouvertMax) {
-                solde = solde - somme;
-                c.solde = c.solde + somme;
-                System.out.println("Le transfert de \t" + somme + "\t a été effectué");
-                releveCompte += "OPERATION :\t" + somme + "\tDE VIRER  \n";
-                return true;
-            } else {
-                System.out.println("Le transfert n a pas été effectué");
-                return false;
-            }
-        } else {
-            System.out.println("Vous ne pouvez pas faire un virement d un montant negatif");
-            return false;
-        }
-    }
-
-    public void setDecouvertMax(int somme) {
-
-        decouvertMax = somme;
-
-    }
-
-    void setDebitMax(int somme) {
-
-        debitMax = somme;
-    }
-
-    public void releve() {
-        System.out.println("------------------------------------");
-        System.out.println(nom);
-        System.out.println();
-        System.out.println(releveCompte);
-        System.out.println("------------------------------------");
-    }
-}*/
+}
