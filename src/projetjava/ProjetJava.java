@@ -10,7 +10,7 @@ public class ProjetJava {
 
     public static void main(String[] args) {
 
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------");
         System.out.println("STREAM");
         System.out.println("Par Erwan Le Poder et Florian Migot");
         menuPrincipale();
@@ -20,7 +20,7 @@ public class ProjetJava {
     public static void menuPrincipale() {
 
         Scanner sc = new Scanner(System.in);
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------");
         System.out.println("MENU");
         System.out.println("1-jouer");
         System.out.println("2-deux");
@@ -53,8 +53,8 @@ public class ProjetJava {
         GenererTab(tab, p);
         // reboucler ici
         Affichertab(tab);
-        NombreAleatPlacement();
-       
+        NombreAleatPlacement(tab);
+
     }
 
     public static void GenererTab(char[][] tab, Position pCour) {
@@ -72,7 +72,7 @@ public class ProjetJava {
 
     public static void Affichertab(char[][] tab) {
 
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
         // be careful affiche pas dans le bon sens mais ya de l'idée
         for (int i = 0; i < tab.length; i++) {
@@ -84,18 +84,19 @@ public class ProjetJava {
 
     }
 
-    public static void NombreAleatPlacement() {
+    public static void NombreAleatPlacement(char[][] tab) {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
-        System.out.println("-----------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
         //Jeton j = new Jeton();
         //int valeurJeton = j.valeur;
-        // bon ca marchepas,  imaginons que le chiffre soit 5
-        System.out.println("Le jeton tiré est le :\t" + "5");
-                //CHOIX PLACEMENT
-                System.out.println("-----------------------------------------------------------");
+        // bon ca marche pas mais ne pas sup (a poursuivre),  imaginons que le chiffre soit 5
+        int valeurJeton = 5;
+        System.out.println("Le jeton tiré est le :\t" + valeurJeton);
+        //CHOIX PLACEMENT
+        System.out.println("----------------------------------------------------------------------------");
         System.out.println("SELECTION EMPLACEMENT:");
         System.out.println("Choix Abscisse du Jeton : ");
         int choixAbscisse = sc.nextInt();
@@ -103,8 +104,12 @@ public class ProjetJava {
         int choixOrdonnee = sc.nextInt();
         System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
         //TRAITEMENT PLACEMENT
-    
-    
-    
+        if(true/*condition si c'est dans la grille*/){
+            //tab[choixAbscisse][choixOrdonnee] = String.valueOf(valeurJeton;
+            
+        }
+
+
 
     }
+}
