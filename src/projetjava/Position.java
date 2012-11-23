@@ -8,38 +8,22 @@ package projetjava;
  *
  * @author Erwan
  */
-public class Point {
-    
-    
-    int x;
-    int y;
+public class Position {
+
+    String abscisse;
+    int ordonnee;
     int valeur;
-    
-    
 
+    Position(String abscisse, int ordonnee) {
+        this.abscisse = abscisse;
+        this.ordonnee = ordonnee;
 
-
-Point(int x, int y){
-this.x = x;
-this.y = y;
-
-}
-
-
-
-    
-
-  
+    }
 
     public String toString() {
-        String result = "Point:\t" + nom;
-        result += "\n Abssice:\t" + numero;
-        result += "\n Solde du compte:\t" + solde;
-        result += "\n Montant du découvert maximal autorisé:\t" + decouvertMax;
-        result += "\n montant du débit maximal autorisé:\t" + debitMax;
-        if (solde < 0) {
-            result += "\n Vous etes a découvert !";
-        }
+        String result = "Point:";
+        result += "\n Abssice:\t" + abscisse;
+        result += "\n Ordonnee:\t" + ordonnee;
         return result;
     }
 
