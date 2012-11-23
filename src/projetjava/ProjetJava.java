@@ -7,12 +7,7 @@ import java.util.Scanner;
 public class ProjetJava {
 
     public static void main(String[] args) {
-        /*    int n = 12;
-         int m = 12;
-         int[][] grille = new int[10][10];
-         char[][] tabVide = new char[12][12];
-         GenereTableauVide(tabVide, n, m);
-         AfficheGrille(grille);*/
+
         menuPrincipale();
 
     }
@@ -48,15 +43,20 @@ public class ProjetJava {
         }
 
     }
-    
-    
-    
-    public static void jouer(){
-        
-        
-        
-        
-        
+
+    public static void jouer() {
+
+        int n = 12;
+        int m = 12;
+        int[][] grille = new int[10][10];
+        char[][] tabVide = new char[12][12];
+        char[][] tab = new char[10][11];
+        Position p = new Position();
+        GenereTableauVide(tabVide, n, m);
+        AfficheGrille(grille);
+
+
+
     }
 
     public static void GenereTableauVide(char[][] tabVide, int n, int m) {
@@ -81,4 +81,17 @@ public class ProjetJava {
         }
         System.out.println();
     }
+    
+    public static void GenererTab(char[][] tab, Position p){
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
 }
