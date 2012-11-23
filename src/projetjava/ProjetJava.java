@@ -1,18 +1,26 @@
-package projet_jeux_java;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package projetjava;
 
-import java.util.*;
+import java.util.Random;
 
-public class Projet_Jeux_Java {
+/**
+ *
+ * @author Erwan
+ */
+public class ProjetJava {
 
-    public static void function1() {
-        
-    }
-
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         // TODO code application logic here
        /* init();*/
         /*genereTabNbAleat();*/
-        genereNbAleat();
+        //genereNbAleat();
+      
     }
 
     public static void init() {
@@ -21,7 +29,7 @@ public class Projet_Jeux_Java {
         int m = 13;
         char[][] tab = new char[n][m];
         genereGrille(tab, n, m);
-        afficheGrille(tab, n, m);
+        //afficheGrille(tab, n, m);
     }
 
     public static void genereGrille(char[][] tab, int n, int m) {
@@ -85,5 +93,3 @@ public class Projet_Jeux_Java {
      /*   afficheGrille(tabNbAleat, 2, 39);*/
     }
 }
-   
-
