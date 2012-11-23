@@ -10,6 +10,9 @@ public class ProjetJava {
 
     public static void main(String[] args) {
 
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("STREAM");
+        System.out.println("Par Erwan Le Poder et Florian Migot");
         menuPrincipale();
 
     }
@@ -17,17 +20,16 @@ public class ProjetJava {
     public static void menuPrincipale() {
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------");
-        System.out.println("STREAM");
-        System.out.println("Par Erwan Le Poder et Florian Migot");
-        System.out.println("-----------------------------------------------------------");
         System.out.println("MENU");
         System.out.println("1-jouer");
         System.out.println("2-deux");
         System.out.println("3-trois");
-
         System.out.println("Votre choix ? (automatiquement 1 pour les tests)");
         // int choix = sc.nextInt();
         int choix = 1;
+        System.out.println("Votre choix de menu est le\t" + choix);
+
+
         switch (choix) {
             case 1:
                 jouer();
@@ -48,23 +50,32 @@ public class ProjetJava {
 
     public static void jouer() {
 
-
+        Scanner sc = new Scanner(System.in);
         char[][] tab = new char[10][11];
         Position p = new Position();
         GenererTab(tab, p);
-        System.out.println("-----------------------------------------------------------");
+
         // reboucler ici
-        System.out.println("VOTRE GRILLE ACTUELLE:");
+
         Affichertab(tab);
         System.out.println("-----------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
-        Jeton j = new Jeton();
-        int valeurJeton = j.valeur;
-        System.out.println("Le jeton tiré est le :\t"+valeurJeton);
+        //Jeton j = new Jeton();
+        //int valeurJeton = j.valeur;
+        // bon ca marchepas,  imaginons que le chiffre soit 5
+        System.out.println("Le jeton tiré est le :\t" + "5");
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("SELECTION EMPLACEMENT:");
+        System.out.println("Choix Abscisse du Jeton : ");
+        int choixAbscisse = sc.nextInt();
+        System.out.println("Choix Ordonne du Jeton");
+        int choixOrdonnee = sc.nextInt();
+
 
     }
 
     public static void GenererTab(char[][] tab, Position pCour) {
+        // Systeme de comptage ne pas supprimer
         /*System.out.println(pCour);
          System.out.println(compt);
          compt++;*/
@@ -76,6 +87,9 @@ public class ProjetJava {
     }
 
     public static void Affichertab(char[][] tab) {
+        System.out.println("-----------------------------------------------------------");
+        System.out.println("VOTRE GRILLE ACTUELLE:");
+        // be careful affiche pas dans le bon sens mais ya de l'idée
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 System.out.print(tab[i][j] + "\t");
