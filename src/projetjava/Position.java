@@ -27,69 +27,14 @@ public class Position {
         return result;
     }
 
-    public void crediter(int somme) {
-        if (somme > 0) {
-            solde = solde + somme;
-            System.out.println("votre compte a été crediter de:\t" + somme);
-            releveCompte += "OPERATION :\t" + somme + "\tDE CREDITER \n";
-        } else {
-            System.out.println("Vous ne pouvez pas credité d un montant negatif");
-
-        }
-    }
-
-    public boolean debiter(int somme) {
-        if (somme > 0) {
-            if ((somme < debitMax) && (solde - somme > -decouvertMax)) {
-                solde = solde - somme;
-                System.out.println("votre compte a été debité de:\t" + somme);
-                releveCompte += "OPERATION :\t" + somme + "\tDE DEBITER \n";
-                return true;
-            } else {
-                System.out.println("Votre compte n a pas été debité");
-                return false;
-            }
+    public static Position suivant(Position p) {
+        if (p.colonne == 8) {
+            return new Position(p.ligne + 1, 0);
 
         } else {
-            System.out.println("Vous ne pouvez pas debiter d un montant negatif");
-            return false;
+            return new Position(p.ligne, p.colonne + 1);
+
         }
-    }
-
-    public boolean virementVers(int somme, Compte c) {
-        if (somme > 0) {
-            if (solde - somme > -decouvertMax) {
-                solde = solde - somme;
-                c.solde = c.solde + somme;
-                System.out.println("Le transfert de \t" + somme + "\t a été effectué");
-                releveCompte += "OPERATION :\t" + somme + "\tDE VIRER  \n";
-                return true;
-            } else {
-                System.out.println("Le transfert n a pas été effectué");
-                return false;
-            }
-        } else {
-            System.out.println("Vous ne pouvez pas faire un virement d un montant negatif");
-            return false;
-        }
-    }
-
-    public void setDecouvertMax(int somme) {
-
-        decouvertMax = somme;
 
     }
-
-    void setDebitMax(int somme) {
-
-        debitMax = somme;
-    }
-
-    public void releve() {
-        System.out.println("------------------------------------");
-        System.out.println(nom);
-        System.out.println();
-        System.out.println(releveCompte);
-        System.out.println("------------------------------------");
-    }
-}*/
+}
