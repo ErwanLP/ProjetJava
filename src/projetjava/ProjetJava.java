@@ -54,8 +54,30 @@ public class ProjetJava {
         NetoyerTab(tab);
         GenererTab(tab, p);
         // reboucler ici
-        Affichertab(tab);
-        NombreAleatPlacement(tab);
+        do {
+            Affichertab(tab);
+            NombreAleatPlacement(tab);
+        } while (rejouer());
+
+
+    }
+
+    public static boolean rejouer() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("REJOUER");
+        System.out.println("1-oui");
+        System.out.println("2-non");
+        System.out.println("Votre choix ?");
+        int choix = sc.nextInt();
+        System.out.println("Votre choix de menu est le\t" + choix);
+        if (choix == 1) {
+            return true;
+        } else {
+            return false;
+
+
+        }
 
     }
 
@@ -107,11 +129,11 @@ public class ProjetJava {
         Scanner sc = new Scanner(System.in);
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
-        Jeton j = new Jeton();
-        int valeurJeton = j.valeur;
+        // Jeton j = new Jeton();
+        //  int valeurJeton = j.valeur;
         // bon ca marche pas mais ne pas sup (a poursuivre),  imaginons que le chiffre soit 5
         // mail envoyer a manceny pour de l'aide
-        //int valeurJeton = 5;
+        int valeurJeton = 5;
         System.out.println("Le jeton tiré est le :\t" + valeurJeton);
         //CHOIX PLACEMENT
         System.out.println("------------------------------------------------------------------------------------");
@@ -123,7 +145,7 @@ public class ProjetJava {
         System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
         //TRAITEMENT PLACEMENT
         if (true/*condition si c'est dans la grille*/) {
-             tab[choixOrdonnee][choixAbscisse] = String.Valueof(valeurJeton);
+            tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
         }
 
 
