@@ -105,9 +105,8 @@ public class ProjetJava {
         int choixOrdonnee = sc.nextInt();
         System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
         //TRAITEMENT PLACEMENT
-        if(true/*condition si c'est dans la grille*/){
+        if (true/*condition si c'est dans la grille*/) {
             //tab[choixAbscisse][choixOrdonnee] = String.valueOf(valeurJeton;
-            
         }
 
 

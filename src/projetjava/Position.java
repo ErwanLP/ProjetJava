@@ -37,7 +37,7 @@ public class Position {
         if (p.x < 5 && p.y == 0) {
             return new Position(p.x + 1, p.y);
         }
-        if (p.x == 5 && p.y <9) {
+        if (p.x == 5 && p.y < 9) {
             return new Position(p.x, p.y + 1);
         } else {
             return new Position(p.x + 1, p.y);
