@@ -198,13 +198,13 @@ public class ProjetJava {
                 return true;
 
             } else {
-                verifPosition(choixAbscisse, choixOrdonnee, Position.suivant(pCour));
+                return verifPosition(choixAbscisse, choixOrdonnee, Position.suivant(pCour));
                     
             }
         } else {
             return false;
         }
-        return false; // ca sert a rien mais sinon java est aps content
+        
     }
 }
 
