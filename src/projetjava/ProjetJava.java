@@ -26,7 +26,7 @@ public class ProjetJava {
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("MENU");
         System.out.println("1-jouer");
-        System.out.println("2-deux");
+        System.out.println("2-deux"); // regle du jeux
         System.out.println("3-trois");
         System.out.println("Votre choix ? (automatiquement 1 pour les tests)");
         // int choix = sc.nextInt();
