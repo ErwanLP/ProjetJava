@@ -59,7 +59,7 @@ public class ProjetJava {
 
     }
 
-    public static void NetoyerTab(String[][] tab) {
+    public static void NetoyerTab(String[][] tab) { // initialemnt un table string a pour valeur null on renplace pas rien
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 tab[i][j] = " ";
@@ -123,7 +123,7 @@ public class ProjetJava {
         System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
         //TRAITEMENT PLACEMENT
         if (true/*condition si c'est dans la grille*/) {
-            //  tab[choixAbscisse][choixOrdonnee] = valeurJeton;
+             tab[choixOrdonnee][choixAbscisse] = String.Valueof(valeurJeton);
         }
 
 
@@ -139,5 +139,5 @@ public class ProjetJava {
  * en cartaère quitte a retransforme lors quon ferra le decompte des points mais lorsque cest des nombres
  * (plus de 1 chiffre) on peux pas mettre des hcar mais des String , du coup c'ets un joyeux bordel
  * 
- * 
+ * Jai essayer avec un tableau en sting on verra pour moi cets la meilleur solution
  */
