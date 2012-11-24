@@ -145,17 +145,17 @@ public class ProjetJava {
         System.out.println("SELECTION EMPLACEMENT:");
         int choixAbscisse;
         int choixOrdonnee;
-        do{
-        System.out.println("Choix Abscisse du Jeton : ");
-        choixAbscisse = sc.nextInt();
-        System.out.println("Choix Ordonne du Jeton");
-        choixOrdonnee = sc.nextInt();
-        System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
-        //TRAITEMENT PLACEMENT
+        do {
+            System.out.println("Choix Abscisse du Jeton : ");
+            choixAbscisse = sc.nextInt();
+            System.out.println("Choix Ordonne du Jeton");
+            choixOrdonnee = sc.nextInt();
+            System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
+            //TRAITEMENT PLACEMENT
         } while (!verifPosition(choixAbscisse, choixOrdonnee, p));/*condition si c'est dans la grille*/
-        
-            tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
-        
+
+        tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
+
 
 
 
@@ -192,7 +192,7 @@ public class ProjetJava {
         }
 
         int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
-
+        System.out.println(pointScore);
 
     }
 
@@ -203,12 +203,12 @@ public class ProjetJava {
 
             } else {
                 return verifPosition(choixAbscisse, choixOrdonnee, Position.suivant(pCour));
-                    
+
             }
         } else {
             return false;
         }
-        
+
     }
 }
 
