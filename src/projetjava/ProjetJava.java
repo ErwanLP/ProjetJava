@@ -1,5 +1,7 @@
 package projetjava;
 
+// >>>>>>>>>>>> IMPORTANT => LISTE COMMENTAIRE GLOBAL A LA FIN <<<<<<<<<<
+
 import java.util.Scanner;
 
 /*import java.util.Random;*/
@@ -113,3 +115,14 @@ public class ProjetJava {
 
     }
 }
+
+
+
+
+/* Le probleme que j'ai rencontré est que la grille (tab) est pour l'instant un tableau de char 
+ * (caractère) mais on mais des int dedant (chiffre)  donc ya une methode pour transformer un chiffre 
+ * en cartaère quitte a retransforme lors quon ferra le decompte des points mais lorsque cest des nombres
+ * (plus de 1 chiffre) on peux pas mettre des hcar mais des String , du coup c'ets un joyeux bordel
+ * 
+ * 
+ */
