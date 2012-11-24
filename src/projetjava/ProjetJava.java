@@ -51,14 +51,15 @@ public class ProjetJava {
 
         String[][] tab = new String[10][11];
         Position p = new Position();
-        NetoyerTab(tab);
-        GenererTab(tab, p);
+        netoyerTab(tab);
+        genererTab(tab, p);
         // reboucler ici
         do {
-            Affichertab(tab);
-            NombreAleatPlacement(tab);
-        } while (true);
-
+            affichertab(tab);
+            nombreAleatPlacement(tab);
+        } while (verifTab(tab));
+        // la grille est finite on commence a compter les point
+        System.out.println("la grille est finite on commence a compter les points");
 
     }
 
@@ -81,7 +82,7 @@ public class ProjetJava {
 
     }
 
-    public static void NetoyerTab(String[][] tab) { // initialemnt un table string a pour valeur null on renplace pas rien
+    public static void netoyerTab(String[][] tab) { // initialemnt un table string a pour valeur null on renplace par rien
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 tab[i][j] = " ";
@@ -92,7 +93,7 @@ public class ProjetJava {
 
     }
 
-    public static void GenererTab(String[][] tab, Position pCour) {
+    public static void genererTab(String[][] tab, Position pCour) {
 
         // Systeme de comptage ne pas supprimer
         /*System.out.println(pCour);
@@ -101,12 +102,12 @@ public class ProjetJava {
 
         if (pCour.x != 11 || pCour.y != 9) {   // on rajoute un en plus pour avoir le dernier ! 10 -> 11
             tab[pCour.y][pCour.x] = "*";  // logique pourquoi inversé ! abcsisse = collone 
-            GenererTab(tab, Position.suivant(pCour));
+            genererTab(tab, Position.suivant(pCour));
 
         }
     }
 
-    public static void Affichertab(String[][] tab) {
+    public static void affichertab(String[][] tab) {
 
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
@@ -123,7 +124,7 @@ public class ProjetJava {
 
     }
 
-    public static void NombreAleatPlacement(String[][] tab) {
+    public static void nombreAleatPlacement(String[][] tab) {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
@@ -148,6 +149,20 @@ public class ProjetJava {
             tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
         }
 
+
+
+    }
+
+    public static boolean verifTab(String[][] tab) {
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                if (tab[i][j] == "*") { // si on trouve encore au moins une etoile dans la grille
+                    return true;
+
+                }
+            }
+        }
+        return false;
 
 
     }
