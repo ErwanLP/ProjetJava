@@ -77,11 +77,13 @@ public class ProjetJava {
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
         // be careful affiche pas dans le bon sens mais ya de l'idée
-        // ca marche maintenant  cf ligne 67
+        // ca marche maintenant  cf ligne 69
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 System.out.print(tab[i][j] + "\t");
             }
+            System.out.println();
+            System.out.println();
             System.out.println();
         }
 
