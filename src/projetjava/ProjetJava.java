@@ -95,10 +95,11 @@ public class ProjetJava {
         Scanner sc = new Scanner(System.in);
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
-        //Jeton j = new Jeton();
-        //int valeurJeton = j.valeur;
+        Jeton j = new Jeton();
+        int valeurJeton = j.valeur;
         // bon ca marche pas mais ne pas sup (a poursuivre),  imaginons que le chiffre soit 5
-        int valeurJeton = 5;
+        // mail envoyer a manceny pour de l'aide
+        //int valeurJeton = 5;
         System.out.println("Le jeton tiré est le :\t" + valeurJeton);
         //CHOIX PLACEMENT
         System.out.println("------------------------------------------------------------------------------------");
