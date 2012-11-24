@@ -63,8 +63,8 @@ public class ProjetJava {
         /*System.out.println(pCour);
          System.out.println(compt);
          compt++;*/
-        if (pCour.x != 10 || pCour.y != 9) {
-            tab[pCour.x][pCour.y] = '*';
+        if (pCour.x != 10 || pCour.y != 9) {   // on rajoute un en plus pour avoir le dernier !
+            tab[pCour.y][pCour.x] = '*';  // logique pourquoi inversé ! abcsisse = collone 
             GenererTab(tab, Position.suivant(pCour));
 
         }
@@ -75,6 +75,7 @@ public class ProjetJava {
         System.out.println("----------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
         // be careful affiche pas dans le bon sens mais ya de l'idée
+        // ca marche maintenant  cf ligne 67
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 System.out.print(tab[i][j] + "\t");
