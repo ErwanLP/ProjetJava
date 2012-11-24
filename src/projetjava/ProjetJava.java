@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class ProjetJava {
 
     static int compt = 0;
-    static int pointScore = 0;
     static int longueurScore = 0 ;
     int []tabScore = new int[21];
 
@@ -172,7 +171,7 @@ public class ProjetJava {
     }
 
     public static void comptagePoint(String[][] tab, Position pCour, int[]tabScore) {
-        if (pCour.x != 11 || pCour.y != 9) {
+        if (pCour.x != 10 || pCour.y != 9) {
            if (pCour.valeur <= Position.suivant(pCour).valeur){
                longueurScore++;
                comptagePoint(tab, Position.suivant(pCour),tabScore);
@@ -187,6 +186,8 @@ public class ProjetJava {
             genererTab(tab, Position.suivant(pCour));
             
              }
+        
+        int pointScore = tabScore[2]*1+tabScore[3]*3+tabScore[4]*5+tabScore[5]*7+tabScore[6]*9+tabScore[7]*11+tabScore[8]*15+tabScore[9]*20+tabScore[10]*25+tabScore[11]*30+tabScore[12]*35+tabScore[13]*40+tabScore[14]*50+tabScore[15]*60+tabScore[16]*70+tabScore[17]*85+tabScore[18]*100+tabScore[19]*150+tabScore[20]*200;
 
 
     }
