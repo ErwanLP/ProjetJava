@@ -57,7 +57,7 @@ public class ProjetJava {
         do {
             Affichertab(tab);
             NombreAleatPlacement(tab);
-        } while (rejouer());
+        } while (true);
 
 
     }
