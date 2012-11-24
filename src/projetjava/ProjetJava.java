@@ -58,7 +58,7 @@ public class ProjetJava {
         // reboucler ici
         do {
             affichertab(tab);
-            nombreAleatPlacement(tab);
+            nombreAleatPlacement(tab, p);
         } while (verifTab(tab));
         // la grille est finite on commence a compter les point
         affichertab(tab);
@@ -127,17 +127,18 @@ public class ProjetJava {
 
     }
 
-    public static void nombreAleatPlacement(String[][] tab) {
+    public static void nombreAleatPlacement(String[][] tab, Position p) {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
-        // Jeton j = new Jeton();
-        //  int valeurJeton = j.valeur;
+        Jeton j = new Jeton();
+        int valeurJeton = j.valeur;
         // bon ca marche pas mais ne pas sup (a poursuivre),  imaginons que le chiffre soit 5
         // mail envoyer a manceny pour de l'aide
-        int valeurJeton = 5;
+        // en fait c'ets bon jai trouvé tout seul ca marche
+        // int valeurJeton = 5;
         System.out.println("Le jeton tiré est le :\t" + valeurJeton);
         //CHOIX PLACEMENT
         System.out.println("------------------------------------------------------------------------------------");
@@ -148,7 +149,7 @@ public class ProjetJava {
         int choixOrdonnee = sc.nextInt();
         System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
         //TRAITEMENT PLACEMENT
-        if (true/*condition si c'est dans la grille*/) {
+        if (verifPosition(choixAbscisse, choixOrdonnee, p)/*condition si c'est dans la grille*/) {
             tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
         }
 
@@ -189,6 +190,21 @@ public class ProjetJava {
         int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
 
 
+    }
+
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) {
+        if (pCour.x != 11 || pCour.y != 9) {
+            if (pCour.x == choixAbscisse && pCour.y == choixOrdonnee) {
+                return true;
+
+            } else {
+                verifPosition(choixAbscisse, choixOrdonnee, Position.suivant(pCour));
+                    
+            }
+        } else {
+            return false;
+        }
+        return false; // ca sert a rien mais sinon java est aps content
     }
 }
 
