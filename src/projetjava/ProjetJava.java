@@ -9,7 +9,7 @@ public class ProjetJava {
 
     static int compt = 0;
     static int longueurScore = 0;
-    int[] tabScore = new int[21];
+    static int[] tabScore = new int[21];
 
     public static void main(String[] args) {
 
@@ -63,6 +63,7 @@ public class ProjetJava {
         // la grille est finite on commence a compter les point
         affichertab(tab);
         System.out.println("la grille est finite on commence a compter les points");
+        comptagePoint(tab, p, tabScore);
 
     }
 
@@ -221,4 +222,9 @@ public class ProjetJava {
  * (plus de 1 chiffre) on peux pas mettre des hcar mais des String , du coup c'ets un joyeux bordel
  * 
  * Jai essayer avec un tableau en sting on verra pour moi cets la meilleur solution
+ * 
+ * verifier que un jeton peux pes etre jouer plein de fois
+ * je crois quil y a un bug a se niveau la
+ * 
+ * 
  */
