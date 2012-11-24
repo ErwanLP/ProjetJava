@@ -143,15 +143,19 @@ public class ProjetJava {
         //CHOIX PLACEMENT
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("SELECTION EMPLACEMENT:");
+        int choixAbscisse;
+        int choixOrdonnee;
+        do{
         System.out.println("Choix Abscisse du Jeton : ");
-        int choixAbscisse = sc.nextInt();
+        choixAbscisse = sc.nextInt();
         System.out.println("Choix Ordonne du Jeton");
-        int choixOrdonnee = sc.nextInt();
+        choixOrdonnee = sc.nextInt();
         System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
         //TRAITEMENT PLACEMENT
-        if (verifPosition(choixAbscisse, choixOrdonnee, p)/*condition si c'est dans la grille*/) {
+        } while (!verifPosition(choixAbscisse, choixOrdonnee, p));/*condition si c'est dans la grille*/
+        
             tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
-        }
+        
 
 
 
