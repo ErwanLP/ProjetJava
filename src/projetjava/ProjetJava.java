@@ -59,6 +59,7 @@ public class ProjetJava {
             nombreAleatPlacement(tab);
         } while (verifTab(tab));
         // la grille est finite on commence a compter les point
+        affichertab(tab);
         System.out.println("la grille est finite on commence a compter les points");
 
     }
@@ -163,6 +164,16 @@ public class ProjetJava {
             }
         }
         return false;
+
+
+    }
+
+    public static void commptagePoint(String[][] tab, Position pCour) {
+        if (pCour.x != 11 || pCour.y != 9) {
+            tab[pCour.y][pCour.x] = "*";
+            genererTab(tab, Position.suivant(pCour));
+
+        }
 
 
     }
