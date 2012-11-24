@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class ProjetJava {
 
     static int compt = 0;
+    static int pointScore = 0;
+    static int longueurScore = 0 ;
 
     public static void main(String[] args) {
 
@@ -170,8 +172,13 @@ public class ProjetJava {
 
     public static void commptagePoint(String[][] tab, Position pCour) {
         if (pCour.x != 11 || pCour.y != 9) {
+           
+            
+            
             tab[pCour.y][pCour.x] = "*";
             genererTab(tab, Position.suivant(pCour));
+            
+            
 
         }
 
