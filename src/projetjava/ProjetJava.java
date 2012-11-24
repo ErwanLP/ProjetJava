@@ -1,7 +1,6 @@
 package projetjava;
 
 // >>>>>>>>>>>> IMPORTANT => LISTE COMMENTAIRE GLOBAL A LA FIN <<<<<<<<<<
-
 import java.util.Scanner;
 
 /*import java.util.Random;*/
@@ -50,8 +49,9 @@ public class ProjetJava {
 
     public static void jouer() {
 
-        char[][] tab = new char[10][11];
+        String[][] tab = new String[10][11];
         Position p = new Position();
+        NetoyerTab(tab);
         GenererTab(tab, p);
         // reboucler ici
         Affichertab(tab);
@@ -59,20 +59,32 @@ public class ProjetJava {
 
     }
 
-    public static void GenererTab(char[][] tab, Position pCour) {
+    public static void NetoyerTab(String[][] tab) {
+        for (int i = 0; i < tab.length; i++) {
+            for (int j = 0; j < tab[i].length; j++) {
+                tab[i][j] = " ";
+            }
+        }
+
+
+
+    }
+
+    public static void GenererTab(String[][] tab, Position pCour) {
 
         // Systeme de comptage ne pas supprimer
         /*System.out.println(pCour);
          System.out.println(compt);
          compt++;*/
+
         if (pCour.x != 11 || pCour.y != 9) {   // on rajoute un en plus pour avoir le dernier ! 10 -> 11
-            tab[pCour.y][pCour.x] = '*';  // logique pourquoi inversé ! abcsisse = collone 
+            tab[pCour.y][pCour.x] = "*";  // logique pourquoi inversé ! abcsisse = collone 
             GenererTab(tab, Position.suivant(pCour));
 
         }
     }
 
-    public static void Affichertab(char[][] tab) {
+    public static void Affichertab(String[][] tab) {
 
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
@@ -89,7 +101,7 @@ public class ProjetJava {
 
     }
 
-    public static void NombreAleatPlacement(char[][] tab) {
+    public static void NombreAleatPlacement(String[][] tab) {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
@@ -111,7 +123,7 @@ public class ProjetJava {
         System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
         //TRAITEMENT PLACEMENT
         if (true/*condition si c'est dans la grille*/) {
-            //tab[choixAbscisse][choixOrdonnee] = String.valueOf(valeurJeton;
+            //  tab[choixAbscisse][choixOrdonnee] = valeurJeton;
         }
 
 
