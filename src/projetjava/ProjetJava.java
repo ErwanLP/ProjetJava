@@ -10,6 +10,7 @@ public class ProjetJava {
     static int compt = 0;
     static int pointScore = 0;
     static int longueurScore = 0 ;
+    int []tabScore = new int[21];
 
     public static void main(String[] args) {
 
@@ -170,17 +171,22 @@ public class ProjetJava {
 
     }
 
-    public static void commptagePoint(String[][] tab, Position pCour) {
+    public static void comptagePoint(String[][] tab, Position pCour, int[]tabScore) {
         if (pCour.x != 11 || pCour.y != 9) {
-           
-            
-            
+           if (pCour.valeur <= Position.suivant(pCour).valeur){
+               longueurScore++;
+               comptagePoint(tab, Position.suivant(pCour),tabScore);
+               
+           }else{
+               tabScore[longueurScore+1]++;
+               longueurScore = 0;
+               comptagePoint(tab, Position.suivant(pCour),tabScore);
+           }
+                  
             tab[pCour.y][pCour.x] = "*";
             genererTab(tab, Position.suivant(pCour));
             
-            
-
-        }
+             }
 
 
     }
