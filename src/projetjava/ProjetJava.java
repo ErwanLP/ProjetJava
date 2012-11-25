@@ -153,7 +153,7 @@ public class ProjetJava {
             choixOrdonnee = sc.nextInt();
             System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
             //TRAITEMENT PLACEMENT
-        } while (!verifPosition(choixAbscisse, choixOrdonnee, p));/*condition si c'est dans la grille*/
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "*"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
 
         tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
 
@@ -197,7 +197,7 @@ public class ProjetJava {
 
     }
 
-    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) {
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) { //verifie que le choix du joeuur est dans la grille
         if (pCour.x != 11 || pCour.y != 9) {
             if (pCour.x == choixAbscisse && pCour.y == choixOrdonnee) {
                 return true;
