@@ -226,5 +226,8 @@ public class ProjetJava {
  * verifier que un jeton peux pes etre jouer plein de fois
  * je crois quil y a un bug a se niveau la
  * 
+ * fail : on peut rettre un numbre a un endroit ou il y a deja un nombre
+ * corriger
+ * 
  * 
  */
