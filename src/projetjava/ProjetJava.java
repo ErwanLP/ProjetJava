@@ -177,11 +177,15 @@ public class ProjetJava {
     }
 
     public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) { //marche pas pCour valeur cets pas ca je pense
-        if (pCour.x != 10 || pCour.y != 9) {
-            if (pCour.valeur <= Position.suivant(pCour).valeur) {
+        if (pCour.x != 10 || pCour.y != 9) { // deuxieme version
+
+            if (Integer.parseInt(tab[pCour.y][pCour.x]) <= Integer.parseInt(tab[Position.suivant(pCour).y][Position.suivant(pCour).x])) {
                 longueurScore++;
                 comptagePoint(tab, Position.suivant(pCour), tabScore);
 
+        // si le dernier test est valide le dernier groupe de point n'est pas pris en compte 
+                //a retravailler mais sinon cets bon
+                
             } else {
                 tabScore[longueurScore + 1]++;
                 longueurScore = 0;
@@ -191,7 +195,8 @@ public class ProjetJava {
 
 
         }
-
+        //tabScore[longueurScore + 1]++;       on pourrazi rajouter ca amis j'ai peur que ca le fasse plein de foie a voir
+// ra jouter ptet un else du if, comme ca ca le fait que une fois a la fin
         int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
         System.out.println(pointScore);
 
