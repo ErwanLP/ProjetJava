@@ -25,7 +25,7 @@ public class Jeton {
         do {
             Random r = new Random();
            valeur = +r.nextInt(39 - 0);
-        } while (tabNbAleat[valeur] == 0);  // tant que le jeton est == de 0
+        } while (tabNbAleat[valeur] == 0);  // tant que le jeton est == de 0 // be careful
         int jeton = tabNbAleat[valeur];
         tabNbAleat[valeur] = 0; // le jeton est utiliser on le met a 0
         return jeton; // on return la valeur du jeton
