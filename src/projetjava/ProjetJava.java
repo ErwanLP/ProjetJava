@@ -176,7 +176,7 @@ public class ProjetJava {
 
     }
 
-    public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) {
+    public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) { //marche pas pCour valeur cets pas ca je pense
         if (pCour.x != 10 || pCour.y != 9) {
             if (pCour.valeur <= Position.suivant(pCour).valeur) {
                 longueurScore++;
