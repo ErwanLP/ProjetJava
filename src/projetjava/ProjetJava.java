@@ -37,4 +37,8 @@ public class ProjetJava {
         }
         System.out.println();
     }
+    
+    public static void InsererJeton() {
+        
+    }
 }
