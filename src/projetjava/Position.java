@@ -22,7 +22,7 @@ public class Position {
 
     Position() {
         this.x = 0;
-        this.y = 9;
+        this.y = 0;
 
     }
 
@@ -34,10 +34,10 @@ public class Position {
     }
 
     public static Position suivant(Position p) {
-        if (p.x < 5 && p.y == 9) {
+        if (p.x < 5 && p.y == 0) {
             return new Position(p.x + 1, p.y);
         }
-        if (p.x == 5 && p.y > 0) {
+        if (p.x == 5 && p.y < 9) {
             return new Position(p.x, p.y + 1);
         } else {
             return new Position(p.x + 1, p.y);

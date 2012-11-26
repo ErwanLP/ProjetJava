@@ -13,33 +13,22 @@ import java.util.Random;
 public class Jeton {
 
     int valeur;
-    int[][] tabNbAleat = {{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39}, {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 50}};
+    static int[] tabNbAleat = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 99};
 
-    Jeton() {
-        //this.valeur = genereJeton();
+    Jeton() {  //Conscruteur
+        this.valeur = genereJeton();
     }
 
-    public void genereJeton() {
+    public int genereJeton() {
 
-        Random r = new Random();
-        int vari;
-        int valeur = +r.nextInt(39 - 0);
-        for (int i = 0; i < 40; i++) {
-            if (valeur == i) {
-                vari = i;
-            }
-        }
-
-
-        /*for (int i = 0; i < 2; i++) {
-         for (int j = 0; j <40 ; j++) {
-         System.out.print(tabNbAleat[i][j] + "\t");
-
-         }
-         System.out.println();
-         }*/
-
-
+       int valeur;
+        do {
+            Random r = new Random();
+           valeur = +r.nextInt(39 - 0);
+        } while (tabNbAleat[valeur] == 0);  // tant que le jeton est == de 0 // be careful
+        int jeton = tabNbAleat[valeur];
+        tabNbAleat[valeur] = 0; // le jeton est utiliser on le met a 0
+        return jeton; // on return la valeur du jeton
 
     }
 }
