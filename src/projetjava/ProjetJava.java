@@ -53,6 +53,7 @@ public class ProjetJava {
 
         String[][] tab = new String[10][11];
         Position p = new Position();
+        do{
         netoyerTab(tab);
         genererTab(tab, p);
         // reboucler ici
@@ -64,7 +65,8 @@ public class ProjetJava {
         affichertab(tab);
         System.out.println("la grille est finite on commence a compter les points");
         comptagePoint(tab, p, tabScore);
-
+        }while(rejouer());
+        
     }
 
     public static boolean rejouer() {
@@ -77,6 +79,10 @@ public class ProjetJava {
         int choix = sc.nextInt();
         System.out.println("Votre choix de menu est le\t" + choix);
         if (choix == 1) {
+            Jeton.reinitialisertabNbAleat(); //sert a reinyinialiter les jeton car sans ca il y pas asser de jeton pour faire les 2 truc
+            // de tout facon une jeux de jeton part partie:
+            // il fau netoyer le score <<<<<<<<<<<<<<< A FAIRE
+            reinitialisertabScore(tabScore);
             return true;
         } else {
             return false;
@@ -204,6 +210,16 @@ public class ProjetJava {
         }
 
     }
+    
+    public static void reinitialisertabScore( int[] tabScore){
+        for( int i =0; i<tabScore.length; i++){
+            tabScore[i] = 0;
+            
+        }
+        
+        
+    }
+    
 
     public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) { //verifie que le choix du joeuur est dans la grille
         if (pCour.x != 11 || pCour.y != 9) {
