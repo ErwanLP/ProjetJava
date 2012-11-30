@@ -1,5 +1,6 @@
 package projetjava;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class ProjetJava {
@@ -8,6 +9,7 @@ public class ProjetJava {
     static int compt = 0;
     static int longueurScore = 0;
     static int[] tabScore = new int[21];
+    static int scoreTotal = 0;
 
     public static void main(String[] args) {
 
@@ -93,7 +95,8 @@ public class ProjetJava {
             // reboucler ici
             do {
                 affichertab(tab);
-                nombreAleatPlacement(tab, p);
+                //Placement(tab, p, nombreAleat(tab));
+                PlacementRobot(tab, p, nombreAleat(tab));
             } while (verifTab(tab));
             // la grille est finite on commence a compter les point
             affichertab(tab);
@@ -116,6 +119,7 @@ public class ProjetJava {
             // de tout facon une jeux de jeton part partie:
             // il fau netoyer le score <<<<<<<<<<<<<<< A FAIRE
             reinitialisertabScore(tabScore);
+            longueurScore = 0;
             return true;
         } else {
             return false;
@@ -160,7 +164,7 @@ public class ProjetJava {
         }
     }
 
-    public static void nombreAleatPlacement(String[][] tab, Position p) {
+    public static int nombreAleat(String[][] tab) {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
@@ -173,7 +177,17 @@ public class ProjetJava {
         // en fait c'ets bon jai trouvé tout seul ca marche
         // int valeurJeton = 5;
         System.out.println("Le jeton tiré est le :\t" + valeurJeton);
+        return valeurJeton;
+
+
+
+    }
+
+    public static void Placement(String[][] tab, Position p, int valeurJeton) {
+
+
         //CHOIX PLACEMENT
+        Scanner sc = new Scanner(System.in);
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("SELECTION EMPLACEMENT:");
         int choixAbscisse;
@@ -211,7 +225,11 @@ public class ProjetJava {
     public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) {
 
         /*Fonction qui sert a compter le score de la table*/
-        if (pCour.x != 99 || pCour.y != 99) {
+        if (pCour.x != 10 || pCour.y != 9) {
+            /*Ne parche pas pour toute les grille :'( 
+             * car on a besoin d ela penutieme case
+             * */
+             
 
             if (Integer.parseInt(tab[pCour.y][pCour.x]) <= Integer.parseInt(tab[Position.suivant(pCour).y][Position.suivant(pCour).x])) {
                 longueurScore++;
@@ -229,13 +247,16 @@ public class ProjetJava {
             tabScore[longueurScore + 1]++;
             longueurScore = 0;
             int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
-            System.out.println(pointScore);
+            System.out.println("Score de la partie:" + pointScore);
+            scoreTotal = scoreTotal + pointScore;
+            System.out.println("Score total:" + scoreTotal);
+            
         }
 
     }
 
     public static void reinitialisertabScore(int[] tabScore) {
-        
+
         /*Fonction qui permet de reinitialiser la table des score*/
         for (int i = 0; i < tabScore.length; i++) {
             tabScore[i] = 0;
@@ -245,8 +266,8 @@ public class ProjetJava {
 
     }
 
-    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) { 
-       
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) {
+
         /*Fonction qui verifie que la choix du joueur est bien dans la grille*/
         if (pCour.x != 99 || pCour.y != 99) {
             if (pCour.x == choixAbscisse && pCour.y == choixOrdonnee) {
@@ -261,11 +282,25 @@ public class ProjetJava {
         }
 
     }
-    
-    public static void remplissageRobot (){
-        
-        
+
+    public static void PlacementRobot(String[][] tab, Position p, int valeurJeton) {
+
+
+
+
+        int choixAbscisse;
+        int choixOrdonnee;
+        Random r = new Random();
+
+        do {
+            choixAbscisse = +r.nextInt(11 - 0);
+            choixOrdonnee = +r.nextInt(10 - 0);
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "*"));
+        /*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
+
+        tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
+
+
+
     }
-    
-    
 }
