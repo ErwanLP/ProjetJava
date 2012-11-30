@@ -11,6 +11,7 @@ public class ProjetJava {
 
     public static void main(String[] args) {
 
+        /* Fonction Principale*/
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("STREAM");
         System.out.println("Par Erwan Le Poder et Florian Migot");
@@ -20,6 +21,7 @@ public class ProjetJava {
 
     public static void menuPrincipale() {
 
+        /*Fonction du menu principale*/
         Scanner sc = new Scanner(System.in);
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("MENU");
@@ -47,6 +49,10 @@ public class ProjetJava {
     }
 
     public static void menuJouer() {
+
+        /*Fonction du menu si le joueur a decider de jouer
+         * gestion du choix de la grille
+         */
         Scanner sc = new Scanner(System.in);
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("MENU JOUER");
@@ -76,8 +82,11 @@ public class ProjetJava {
 
     public static void jouerGrille1() {
 
-        String[][] tab = new String[10][11];
-        Position p = new Position();
+        /*Fonction d'initialisation et de traitement de la grille 1
+         * qui appelle des fonctions valables pour toute les grilles
+         */
+        String[][] tab = new String[10][11]; //grille pour la grille 1
+        Position p = new Position(); // position pour la grille 1
         do {
             netoyerTab(tab);
             genererTab(tab, p);
@@ -116,22 +125,21 @@ public class ProjetJava {
 
     }
 
-    public static void netoyerTab(String[][] tab) { // Permet de reinitaliser le tableau
-        
+    public static void netoyerTab(String[][] tab) {
+
+        /*Fonction qui reinitialise le tableau*/
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 tab[i][j] = " ";
             }
         }
-
-
-
     }
 
     public static void genererTab(String[][] tab, Position pCour) {
 
-         if (pCour.x != 11 || pCour.y != 9) {   // on rajoute un en plus pour avoir le dernier ! 10 -> 11 Specifique a la gille 1
-            tab[pCour.y][pCour.x] = "*";  // logique pourquoi inversé ! abcsisse = collone 
+        /*Fontion qui place des * pour generer la grille*/
+        if (pCour.x != 99 || pCour.y != 99) {
+            tab[pCour.y][pCour.x] = "*";  // logique pourquoi inversé : abcsisse = collone 
             genererTab(tab, Position.suivant(pCour));
 
         }
@@ -139,6 +147,7 @@ public class ProjetJava {
 
     public static void affichertab(String[][] tab) {
 
+        /*Fonction d'affichege de la grille*/
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
         for (int i = 0; i < tab.length; i++) {
@@ -149,7 +158,6 @@ public class ProjetJava {
             System.out.println();
             System.out.println();
         }
-
     }
 
     public static void nombreAleatPlacement(String[][] tab, Position p) {
@@ -185,9 +193,11 @@ public class ProjetJava {
     }
 
     public static boolean verifTab(String[][] tab) {
+
+        /*Foncion qui sert a savoir si la grille est remplie*/
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
-                if (tab[i][j] == "*") { // si on trouve encore au moins une etoile dans la grille
+                if (tab[i][j] == "*") {
                     return true;
 
                 }
@@ -198,15 +208,14 @@ public class ProjetJava {
 
     }
 
-    public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) { //marche pas pCour valeur cets pas ca je pense
-        if (pCour.x != 10 || pCour.y != 9) { // deuxieme version ca marche
+    public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) {
+
+        /*Fonction qui sert a compter le score de la table*/
+        if (pCour.x != 99 || pCour.y != 99) {
 
             if (Integer.parseInt(tab[pCour.y][pCour.x]) <= Integer.parseInt(tab[Position.suivant(pCour).y][Position.suivant(pCour).x])) {
                 longueurScore++;
                 comptagePoint(tab, Position.suivant(pCour), tabScore);
-
-                // si le dernier test est valide le dernier groupe de point n'est pas pris en compte 
-                //a retravailler mais sinon cets bon
 
             } else {
                 tabScore[longueurScore + 1]++;
@@ -219,8 +228,6 @@ public class ProjetJava {
         } else {
             tabScore[longueurScore + 1]++;
             longueurScore = 0;
-            //tabScore[longueurScore + 1]++;       on pourrazi rajouter ca amis j'ai peur que ca le fasse plein de foie a voir
-// ra jouter ptet un else du if, comme ca ca le fait que une fois a la fin
             int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
             System.out.println(pointScore);
         }
@@ -228,6 +235,8 @@ public class ProjetJava {
     }
 
     public static void reinitialisertabScore(int[] tabScore) {
+        
+        /*Fonction qui permet de reinitialiser la table des score*/
         for (int i = 0; i < tabScore.length; i++) {
             tabScore[i] = 0;
 
@@ -236,8 +245,10 @@ public class ProjetJava {
 
     }
 
-    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) { //verifie que le choix du joeuur est dans la grille
-        if (pCour.x != 11 || pCour.y != 9) {
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) { 
+       
+        /*Fonction qui verifie que la choix du joueur est bien dans la grille*/
+        if (pCour.x != 99 || pCour.y != 99) {
             if (pCour.x == choixAbscisse && pCour.y == choixOrdonnee) {
                 return true;
 
@@ -250,23 +261,11 @@ public class ProjetJava {
         }
 
     }
+    
+    public static void remplissageRobot (){
+        
+        
+    }
+    
+    
 }
-
-
-
-
-/* Le probleme que j'ai rencontré est que la grille (tab) est pour l'instant un tableau de char 
- * (caractère) mais on mais des int dedant (chiffre)  donc ya une methode pour transformer un chiffre 
- * en cartaère quitte a retransforme lors quon ferra le decompte des points mais lorsque cest des nombres
- * (plus de 1 chiffre) on peux pas mettre des hcar mais des String , du coup c'ets un joyeux bordel
- * 
- * Jai essayer avec un tableau en sting on verra pour moi cets la meilleur solution
- * 
- * verifier que un jeton peux pes etre jouer plein de fois
- * je crois quil y a un bug a se niveau la
- * 
- * fail : on peut rettre un numbre a un endroit ou il y a deja un nombre
- * corriger
- * 
- * 
- */

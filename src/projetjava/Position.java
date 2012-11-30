@@ -39,8 +39,14 @@ public class Position {
         }
         if (p.x == 5 && p.y < 9) {
             return new Position(p.x, p.y + 1);
-        } else {
+        }
+        if (p.x < 10 && p.y == 9) {
             return new Position(p.x + 1, p.y);
         }
+        //if(p.x == 10 && p.y == 10){
+        return new Position(99, 99);
+
+
+
     }
 }
