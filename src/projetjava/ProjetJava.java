@@ -1,12 +1,10 @@
 package projetjava;
 
-// >>>>>>>>>>>> IMPORTANT => LISTE COMMENTAIRE GLOBAL A LA FIN <<<<<<<<<<
 import java.util.Scanner;
 
-/*import java.util.Random;*/
-/*int valeur = 1 + r.nextInt(37 - 1);*/
 public class ProjetJava {
 
+    // INITIALISATION VARIABLE
     static int compt = 0;
     static int longueurScore = 0;
     static int[] tabScore = new int[21];
@@ -28,13 +26,12 @@ public class ProjetJava {
         System.out.println("1-jouer");
         System.out.println("2-deux"); // regle du jeux
         System.out.println("3-trois");
-        System.out.println("Votre choix ? (automatiquement 1 pour les tests)");
+        System.out.println("Votre choix ?");// automatiquement 1 pour les tests
         // int choix = sc.nextInt();
         int choix = 1;
-        System.out.println("Votre choix de menu est le\t" + choix);
         switch (choix) {
             case 1:
-                jouer();
+                menuJouer();
                 break;
             case 2:
                 //deux();
@@ -49,24 +46,52 @@ public class ProjetJava {
 
     }
 
-    public static void jouer() {
+    public static void menuJouer() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("MENU JOUER");
+        System.out.println("1-Grille Basique");
+        System.out.println("2-Grille Boucle"); // regle du jeux
+        System.out.println("3-Grille Double Boucle");
+        System.out.println("4-Grille Surface");
+        System.out.println("Votre choix ?");// automatiquement 1 pour les tests
+        // int choix = sc.nextInt();
+        int choix = 1;
+        switch (choix) {
+            case 1:
+                jouerGrille1();
+                break;
+            case 2:
+                //deux();
+                break;
+            case 3:
+                //trois();
+                break;
+            default:
+                menuPrincipale();
+                break;
+        }
+
+    }
+
+    public static void jouerGrille1() {
 
         String[][] tab = new String[10][11];
         Position p = new Position();
-        do{
-        netoyerTab(tab);
-        genererTab(tab, p);
-        // reboucler ici
         do {
+            netoyerTab(tab);
+            genererTab(tab, p);
+            // reboucler ici
+            do {
+                affichertab(tab);
+                nombreAleatPlacement(tab, p);
+            } while (verifTab(tab));
+            // la grille est finite on commence a compter les point
             affichertab(tab);
-            nombreAleatPlacement(tab, p);
-        } while (verifTab(tab));
-        // la grille est finite on commence a compter les point
-        affichertab(tab);
-        System.out.println("la grille est finite on commence a compter les points");
-        comptagePoint(tab, p, tabScore);
-        }while(rejouer());
-        
+            System.out.println("la grille est finite on commence a compter les points");
+            comptagePoint(tab, p, tabScore);
+        } while (rejouer());
+
     }
 
     public static boolean rejouer() {
@@ -77,7 +102,6 @@ public class ProjetJava {
         System.out.println("2-non");
         System.out.println("Votre choix ?");
         int choix = sc.nextInt();
-        System.out.println("Votre choix de menu est le\t" + choix);
         if (choix == 1) {
             Jeton.reinitialisertabNbAleat(); //sert a reinyinialiter les jeton car sans ca il y pas asser de jeton pour faire les 2 truc
             // de tout facon une jeux de jeton part partie:
@@ -92,7 +116,8 @@ public class ProjetJava {
 
     }
 
-    public static void netoyerTab(String[][] tab) { // initialemnt un table string a pour valeur null on renplace par rien
+    public static void netoyerTab(String[][] tab) { // Permet de reinitaliser le tableau
+        
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 tab[i][j] = " ";
@@ -105,12 +130,7 @@ public class ProjetJava {
 
     public static void genererTab(String[][] tab, Position pCour) {
 
-        // Systeme de comptage ne pas supprimer
-        /*System.out.println(pCour);
-         System.out.println(compt);
-         compt++;*/
-
-        if (pCour.x != 11 || pCour.y != 9) {   // on rajoute un en plus pour avoir le dernier ! 10 -> 11
+         if (pCour.x != 11 || pCour.y != 9) {   // on rajoute un en plus pour avoir le dernier ! 10 -> 11 Specifique a la gille 1
             tab[pCour.y][pCour.x] = "*";  // logique pourquoi inversé ! abcsisse = collone 
             genererTab(tab, Position.suivant(pCour));
 
@@ -121,8 +141,6 @@ public class ProjetJava {
 
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
-        // be careful affiche pas dans le bon sens mais ya de l'idée
-        // ca marche maintenant  cf ligne 69
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
                 System.out.print(tab[i][j] + "\t");
@@ -157,12 +175,10 @@ public class ProjetJava {
             choixAbscisse = sc.nextInt();
             System.out.println("Choix Ordonne du Jeton");
             choixOrdonnee = sc.nextInt();
-            System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
             //TRAITEMENT PLACEMENT
         } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "*"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
 
         tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
-
 
 
 
@@ -200,26 +216,25 @@ public class ProjetJava {
 
 
 
-        }else{
-        tabScore[longueurScore + 1]++;
-        longueurScore = 0;
-        //tabScore[longueurScore + 1]++;       on pourrazi rajouter ca amis j'ai peur que ca le fasse plein de foie a voir
+        } else {
+            tabScore[longueurScore + 1]++;
+            longueurScore = 0;
+            //tabScore[longueurScore + 1]++;       on pourrazi rajouter ca amis j'ai peur que ca le fasse plein de foie a voir
 // ra jouter ptet un else du if, comme ca ca le fait que une fois a la fin
-        int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
-        System.out.println(pointScore);
+            int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
+            System.out.println(pointScore);
         }
 
     }
-    
-    public static void reinitialisertabScore( int[] tabScore){
-        for( int i =0; i<tabScore.length; i++){
+
+    public static void reinitialisertabScore(int[] tabScore) {
+        for (int i = 0; i < tabScore.length; i++) {
             tabScore[i] = 0;
-            
+
         }
-        
-        
+
+
     }
-    
 
     public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) { //verifie que le choix du joeuur est dans la grille
         if (pCour.x != 11 || pCour.y != 9) {
