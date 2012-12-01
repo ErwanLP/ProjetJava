@@ -28,14 +28,15 @@ public class ProjetJava {
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("MENU");
         System.out.println("1-jouer");
-        System.out.println("2-deux"); // regle du jeux
-        System.out.println("3-trois");
+        System.out.println("2-règle du jeux"); // regle du jeux
+        System.out.println("3-quitter");
         System.out.println("Votre choix ?");// automatiquement 1 pour les tests
-        // int choix = sc.nextInt();
-        int choix = 1;
+        int choix = sc.nextInt();
+        //int choix = 1;
         switch (choix) {
             case 1:
                 menuJouer();
+                menuPrincipale();
                 break;
             case 2:
                 //deux();
@@ -62,21 +63,28 @@ public class ProjetJava {
         System.out.println("2-Grille Boucle"); // regle du jeux
         System.out.println("3-Grille Double Boucle");
         System.out.println("4-Grille Surface");
+        System.out.println("5-Menu principale");
         System.out.println("Votre choix ?");// automatiquement 1 pour les tests
-        // int choix = sc.nextInt();
-        int choix = 1;
+        int choix = sc.nextInt();
+        //int choix = 1;
         switch (choix) {
             case 1:
                 jouerGrille1();
+                menuJouer();
                 break;
             case 2:
-                //deux();
+                jouerGrille2();
                 break;
             case 3:
                 //trois();
                 break;
-            default:
+            case 4:
+                //quatre();
+                break;
+            case 5:
                 menuPrincipale();
+            default:
+                menuJouer();
                 break;
         }
 
@@ -89,14 +97,21 @@ public class ProjetJava {
          */
         String[][] tab = new String[10][11]; //grille pour la grille 1
         Position p = new Position(); // position pour la grille 1
+        int grille = 1;
+
         do {
             netoyerTab(tab);
             genererTab(tab, p);
+            Jeton.reinitialisertabNbAleat(); //sert a reinyinialiter les jeton car sans ca il y pas asser de jeton pour faire les 2 truc
+            // de tout facon une jeux de jeton part partie:
+            // il fau netoyer le score <<<<<<<<<<<<<<< A FAIRE
+            reinitialisertabScore(tabScore);
+            longueurScore = 0;
             // reboucler ici
             do {
                 affichertab(tab);
-                //Placement(tab, p, nombreAleat(tab));
-                PlacementRobot(tab, p, nombreAleat(tab));
+                //Placement(tab, p, nombreAleat());
+                PlacementRobot(tab, p, nombreAleat());
             } while (verifTab(tab));
             // la grille est finite on commence a compter les point
             affichertab(tab);
@@ -104,6 +119,9 @@ public class ProjetJava {
             comptagePoint(tab, p, tabScore);
         } while (rejouer());
 
+    }
+
+    public static void jouerGrille2() {
     }
 
     public static boolean rejouer() {
@@ -115,11 +133,6 @@ public class ProjetJava {
         System.out.println("Votre choix ?");
         int choix = sc.nextInt();
         if (choix == 1) {
-            Jeton.reinitialisertabNbAleat(); //sert a reinyinialiter les jeton car sans ca il y pas asser de jeton pour faire les 2 truc
-            // de tout facon une jeux de jeton part partie:
-            // il fau netoyer le score <<<<<<<<<<<<<<< A FAIRE
-            reinitialisertabScore(tabScore);
-            longueurScore = 0;
             return true;
         } else {
             return false;
@@ -164,7 +177,7 @@ public class ProjetJava {
         }
     }
 
-    public static int nombreAleat(String[][] tab) {
+    public static int nombreAleat() {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
@@ -229,7 +242,7 @@ public class ProjetJava {
             /*Ne parche pas pour toute les grille :'( 
              * car on a besoin d ela penutieme case
              * */
-             
+
 
             if (Integer.parseInt(tab[pCour.y][pCour.x]) <= Integer.parseInt(tab[Position.suivant(pCour).y][Position.suivant(pCour).x])) {
                 longueurScore++;
@@ -250,7 +263,7 @@ public class ProjetJava {
             System.out.println("Score de la partie:" + pointScore);
             scoreTotal = scoreTotal + pointScore;
             System.out.println("Score total:" + scoreTotal);
-            
+
         }
 
     }
