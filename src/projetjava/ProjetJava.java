@@ -128,8 +128,8 @@ public class ProjetJava {
             }
             do {
                 affichertab(tab);
-                Placement(tab, p, nombreAleat());
-                //PlacementRobot(tab, p, nombreAleat());
+                //Placement(tab, p, nombreAleat());
+                PlacementRobot(tab, p, nombreAleat());
             } while (verifTab(tab));
             // la grille est finite on commence a compter les point
             affichertab(tab);
@@ -325,8 +325,8 @@ public class ProjetJava {
         Random r = new Random();
 
         do {
-            choixAbscisse = +r.nextInt(13 - 0);
-            choixOrdonnee = +r.nextInt(12 - 0);
+            choixAbscisse = 2+r.nextInt(11);
+            choixOrdonnee = 2+r.nextInt(10);
         } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "□"));
         /*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
 
