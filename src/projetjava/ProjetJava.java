@@ -14,7 +14,7 @@ public class ProjetJava {
     public static void main(String[] args) {
 
         /* Fonction Principale*/
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("STREAM");
         System.out.println("Par Erwan Le Poder et Florian Migot");
         menuPrincipale();
@@ -25,14 +25,14 @@ public class ProjetJava {
 
         /*Fonction du menu principale*/
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("MENU");
         System.out.println("1-jouer");
         System.out.println("2-règle du jeux"); // regle du jeux
         System.out.println("3-quitter");
         System.out.println("Votre choix ?");// automatiquement 1 pour les tests
-        int choix = sc.nextInt();
-        //int choix = 1;
+        //int choix = sc.nextInt();
+        int choix = 1;
         switch (choix) {
             case 1:
                 menuJouer();
@@ -57,7 +57,7 @@ public class ProjetJava {
          * gestion du choix de la grille
          */
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("MENU JOUER");
         System.out.println("1-Grille Basique");
         System.out.println("2-Grille Boucle"); // regle du jeux
@@ -65,8 +65,8 @@ public class ProjetJava {
         System.out.println("4-Grille Surface");
         System.out.println("5-Menu principale");
         System.out.println("Votre choix ?");// automatiquement 1 pour les tests
-        int choix = sc.nextInt();
-        //int choix = 1;
+        //int choix = sc.nextInt();
+        int choix = 1;
         switch (choix) {
             case 1:
                 jouerGrille1();
@@ -95,8 +95,9 @@ public class ProjetJava {
         /*Fonction d'initialisation et de traitement de la grille 1
          * qui appelle des fonctions valables pour toute les grilles
          */
-        String[][] tab = new String[10][11]; //grille pour la grille 1
-        Position p = new Position(); // position pour la grille 1
+        String[][] tab = new String[12][13]; //grille pour la grille 1
+        Position p = new Position(2, 2, 1); // position pour la grille 1
+
         int grille = 1;
 
         do {
@@ -108,10 +109,27 @@ public class ProjetJava {
             reinitialisertabScore(tabScore);
             longueurScore = 0;
             // reboucler ici
+
+
+            for (int i = 0; i < 13; i++) {
+                tab[1][i] = ".";
+            }
+            for (int j = 0; j < 12; j++) {
+                tab[j][1] = ".";
+
+            }
+            for (int k = 1; k < 11; k++) {
+
+                tab[tab.length - k][0] = String.valueOf(k);
+            }
+            for (int l = 1; l < 12; l++) {
+
+                tab[0][l+1] = String.valueOf(l);
+            }
             do {
                 affichertab(tab);
-                //Placement(tab, p, nombreAleat());
-                PlacementRobot(tab, p, nombreAleat());
+                Placement(tab, p, nombreAleat());
+                //PlacementRobot(tab, p, nombreAleat());
             } while (verifTab(tab));
             // la grille est finite on commence a compter les point
             affichertab(tab);
@@ -126,7 +144,7 @@ public class ProjetJava {
 
     public static boolean rejouer() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("REJOUER");
         System.out.println("1-oui");
         System.out.println("2-non");
@@ -154,9 +172,9 @@ public class ProjetJava {
 
     public static void genererTab(String[][] tab, Position pCour) {
 
-        /*Fontion qui place des * pour generer la grille*/
+        /*Fontion qui place des □ pour generer la grille*/
         if (pCour.x != 99 || pCour.y != 99) {
-            tab[pCour.y][pCour.x] = "*";  // logique pourquoi inversé : abcsisse = collone 
+            tab[pCour.y][pCour.x] = "□";  // logique pourquoi inversé : abcsisse = collone 
             genererTab(tab, Position.suivant(pCour));
 
         }
@@ -165,7 +183,7 @@ public class ProjetJava {
     public static void affichertab(String[][] tab) {
 
         /*Fonction d'affichege de la grille*/
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
@@ -181,7 +199,7 @@ public class ProjetJava {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
         Jeton j = new Jeton();
         int valeurJeton = j.valeur;
@@ -201,17 +219,18 @@ public class ProjetJava {
 
         //CHOIX PLACEMENT
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("SELECTION EMPLACEMENT:");
         int choixAbscisse;
         int choixOrdonnee;
         do {
             System.out.println("Choix Abscisse du Jeton : ");
-            choixAbscisse = sc.nextInt();
+            choixAbscisse = sc.nextInt()+1;
             System.out.println("Choix Ordonne du Jeton");
-            choixOrdonnee = sc.nextInt();
+            choixOrdonnee = tab.length - sc.nextInt();
+            //tab.length - k
             //TRAITEMENT PLACEMENT
-        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "*"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "□"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
 
         tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
 
@@ -224,7 +243,7 @@ public class ProjetJava {
         /*Foncion qui sert a savoir si la grille est remplie*/
         for (int i = 0; i < tab.length; i++) {
             for (int j = 0; j < tab[i].length; j++) {
-                if (tab[i][j] == "*") {
+                if (tab[i][j] == "□") {
                     return true;
 
                 }
@@ -238,7 +257,7 @@ public class ProjetJava {
     public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) {
 
         /*Fonction qui sert a compter le score de la table*/
-        if (pCour.x != 10 || pCour.y != 9) {
+        if (pCour.x != 12 || pCour.y != 11) {
             /*Ne parche pas pour toute les grille :'( 
              * car on a besoin d ela penutieme case
              * */
@@ -306,9 +325,9 @@ public class ProjetJava {
         Random r = new Random();
 
         do {
-            choixAbscisse = +r.nextInt(11 - 0);
-            choixOrdonnee = +r.nextInt(10 - 0);
-        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "*"));
+            choixAbscisse = +r.nextInt(13 - 0);
+            choixOrdonnee = +r.nextInt(12 - 0);
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "□"));
         /*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
 
         tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
