@@ -265,7 +265,8 @@ public class ProjetJava {
     public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) {
 
         /*Fonction qui sert a compter le score de la table*/
-        if (pCour.x != 12 || pCour.y != 11) {
+       // if (pCour.x != 12 || pCour.y != 11) {
+             if (pCour.x != 12 || pCour.y != 11) {
             /*Ne parche pas pour toute les grille :'( 
              * car on a besoin d ela penutieme case
              * */
