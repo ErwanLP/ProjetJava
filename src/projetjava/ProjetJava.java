@@ -140,6 +140,14 @@ public class ProjetJava {
     }
 
     public static void jouerGrille2() {
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     public static boolean rejouer() {
