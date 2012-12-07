@@ -141,7 +141,50 @@ public class ProjetJava {
 
     public static void jouerGrille2() {
         
-        
+        /*Fonction d'initialisation et de traitement de la grille 1
+         * qui appelle des fonctions valables pour toute les grilles
+         */
+        String[][] tab = new String[12][13]; //grille pour la grille 1
+        Position p = new Position(2, 2, 1); // position pour la grille 1
+
+        int grille = 2;
+
+        do {
+            netoyerTab(tab);
+            genererTab(tab, p);
+            Jeton.reinitialisertabNbAleat(); //sert a reinyinialiter les jeton car sans ca il y pas asser de jeton pour faire les 2 truc
+            // de tout facon une jeux de jeton part partie:
+            // il fau netoyer le score <<<<<<<<<<<<<<< A FAIRE
+            reinitialisertabScore(tabScore);
+            longueurScore = 0;
+            // reboucler ici
+
+
+            for (int i = 0; i < 13; i++) {
+                tab[1][i] = ".";
+            }
+            for (int j = 0; j < 12; j++) {
+                tab[j][1] = ".";
+
+            }
+            for (int k = 1; k < 11; k++) {
+
+                tab[tab.length - k][0] = String.valueOf(k);
+            }
+            for (int l = 1; l < 12; l++) {
+
+                tab[0][l+1] = String.valueOf(l);
+            }
+            do {
+                affichertab(tab);
+                //Placement(tab, p, nombreAleat());
+                PlacementRobot(tab, p, nombreAleat());
+            } while (verifTab(tab));
+            // la grille est finite on commence a compter les point
+            affichertab(tab);
+            System.out.println("la grille est finite on commence a compter les points");
+            comptagePoint(tab, p, tabScore);
+        } while (rejouer());
         
         
         
