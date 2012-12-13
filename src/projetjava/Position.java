@@ -13,27 +13,21 @@ public class Position {
     int x;
     int y;
     int nbGrille;
-    
-    Position(int nbGrille){
-        if(nbGrille == 1){
-            x =2;
-            y=2;
+
+    Position(int nbGrille) {
+        if (nbGrille == 1) {
+            x = 2;
+            y = 2;
             this.nbGrille = nbGrille;
-            
-        }       
-        
-    }
 
-    Position(int x, int y) {
-        this.x = x;
-        this.y = y;
-        nbGrille = 0;
-    }
+        }
+        if (nbGrille == 2) {
+            x = 2;
+            y = 6;
+            this.nbGrille = nbGrille;
 
-    Position() {
-        this.x = 0;
-        this.y = 0;
-        nbGrille = 0;
+
+        }
 
     }
 
@@ -65,10 +59,22 @@ public class Position {
                 return new Position(p.x + 1, p.y, p.nbGrille);
             }
             //if(p.x == 10 && p.y == 10){
-            return new Position(99, 99);
+            return new Position(99, 99,p.nbGrille);
 
 
         }
+        if(p.nbGrille == 2){
+            
+            if(p.x<10 && p.y ==6){
+                return new Position(p.x + 1, p.y, p.nbGrille);                
+            }
+           // if(p.x ==7 && )
+            
+            //On peut pas use cette methode car si la position est sur une case elle ne peut allé que sur une autre case on doit utiliser les liste
+            
+        }
+        
+        
         return p;
     }
 }

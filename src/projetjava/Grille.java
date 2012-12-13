@@ -18,11 +18,18 @@ public class Grille {
     Grille(int nbGrille) {
 
         if (nbGrille == 1) {
-          this.tab = new String[12][13];
-          this.nbGrille = nbGrille;
-          hauteur = 12;
-          longueur = 13;
-                  
+            this.tab = new String[12][13];
+            this.nbGrille = nbGrille;
+            hauteur = 12;
+            longueur = 13;
+        }
+        if (nbGrille == 2) {
+            this.tab = new String[10][11];
+            this.nbGrille = nbGrille;
+            hauteur = 10;
+            longueur = 11;
+
+
 
         }
 
