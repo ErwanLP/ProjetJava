@@ -67,26 +67,10 @@ public class ProjetJava {
         System.out.println("Votre choix ?");// automatiquement 1 pour les tests
         //int choix = sc.nextInt();
         int choix = 1;
-        switch (choix) {
-            case 1:
-                jouerGrille(1);
-                menuJouer();
-                break;
-            case 2:
-                //
-                break;
-            case 3:
-                //trois();
-                break;
-            case 4:
-                //quatre();
-                break;
-            case 5:
-                menuPrincipale();
-            default:
-                menuJouer();
-                break;
-        }
+        jouerGrille(choix);
+        menuJouer();
+
+
 
     }
 
@@ -118,11 +102,11 @@ public class ProjetJava {
                 objettab.tab[j][1] = ".";
 
             }
-            for (int k = 1; k < objettab.hauteur-1; k++) {
+            for (int k = 1; k < objettab.hauteur - 1; k++) {
 
                 objettab.tab[objettab.tab.length - k][0] = String.valueOf(k);
             }
-            for (int l = 1; l < objettab.longueur-1; l++) {
+            for (int l = 1; l < objettab.longueur - 1; l++) {
 
                 objettab.tab[0][l + 1] = String.valueOf(l);
             }
