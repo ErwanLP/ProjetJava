@@ -13,6 +13,12 @@ public class Position {
     int x;
     int y;
     int nbGrille;
+    
+    /*
+     * >>>>>>>>>>>>>>>>>>>>>>>USELESS<<<<<<<<<<<<<<<<<<<<<<<<<
+     * 
+     */
+    
 
     Position(int nbGrille) {
         if (nbGrille == 1) {

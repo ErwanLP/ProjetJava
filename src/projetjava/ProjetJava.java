@@ -65,8 +65,8 @@ public class ProjetJava {
         System.out.println("4-Grille Surface");
         System.out.println("5-Menu principale");
         System.out.println("Votre choix ?");// automatiquement 1 pour les tests
-        //int choix = sc.nextInt();
-        int choix = 1;
+        int choix = sc.nextInt();
+        //int choix = 1;
         jouerGrille(choix);
         menuJouer();
 
