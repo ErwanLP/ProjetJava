@@ -27,6 +27,7 @@ public class ListePos {
             x = 2;
             y = 6;
             this.nbGrille = nbGrille;
+            suivant = fonctionSuivant(nbGrille);
         }
 
     }

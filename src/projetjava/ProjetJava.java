@@ -81,7 +81,7 @@ public class ProjetJava {
          */
         Grille objettab = new Grille(nbGrille); //grille pour la grille 
        // Position p = new Position(nbGrille); // position pour la grille 
-        ListePos lp = new ListePos(1);
+        ListePos lp = new ListePos(nbGrille);
 
 
 
