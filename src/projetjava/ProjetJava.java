@@ -111,18 +111,18 @@ public class ProjetJava {
             // reboucler ici
 
 
-            for (int i = 0; i < 13; i++) {
+            for (int i = 0; i < objettab.longueur; i++) {
                 objettab.tab[1][i] = ".";
             }
-            for (int j = 0; j < 12; j++) {
+            for (int j = 0; j < objettab.hauteur; j++) {
                 objettab.tab[j][1] = ".";
 
             }
-            for (int k = 1; k < 11; k++) {
+            for (int k = 1; k < objettab.hauteur-1; k++) {
 
                 objettab.tab[objettab.tab.length - k][0] = String.valueOf(k);
             }
-            for (int l = 1; l < 12; l++) {
+            for (int l = 1; l < objettab.longueur-1; l++) {
 
                 objettab.tab[0][l + 1] = String.valueOf(l);
             }

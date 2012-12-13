@@ -11,7 +11,7 @@ package projetjava;
 public class Grille {
 
     String[][] tab;
-    int longeur;
+    int longueur;
     int hauteur;
     int nbGrille;
 
@@ -19,6 +19,10 @@ public class Grille {
 
         if (nbGrille == 1) {
           this.tab = new String[12][13];
+          this.nbGrille = nbGrille;
+          hauteur = 12;
+          longueur = 13;
+                  
 
         }
 

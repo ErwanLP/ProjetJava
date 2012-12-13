@@ -18,6 +18,7 @@ public class Position {
         if(nbGrille == 1){
             x =2;
             y=2;
+            this.nbGrille = nbGrille;
             
         }       
         
