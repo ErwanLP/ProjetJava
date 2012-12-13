@@ -80,13 +80,14 @@ public class ProjetJava {
          * qui appelle des fonctions valables pour toute les grilles
          */
         Grille objettab = new Grille(nbGrille); //grille pour la grille 
-        Position p = new Position(nbGrille); // position pour la grille 
+       // Position p = new Position(nbGrille); // position pour la grille 
+        ListePos lp = new ListePos(1);
 
 
 
         do {
             netoyerTab(objettab);
-            genererTab(objettab, p);
+            genererTab(objettab, lp);
             Jeton.reinitialisertabNbAleat(); //sert a reinyinialiter les jeton car sans ca il y pas asser de jeton pour faire les 2 truc
             // de tout facon une jeux de jeton part partie:
             // il fau netoyer le score <<<<<<<<<<<<<<< A FAIRE
@@ -113,12 +114,12 @@ public class ProjetJava {
             do {
                 affichertab(objettab);
                 //Placement(tab, p, nombreAleat());
-                PlacementRobot(objettab, p, nombreAleat());
+                PlacementRobot(objettab, lp, nombreAleat());
             } while (verifTab(objettab));
             // la grille est finite on commence a compter les point
             affichertab(objettab);
             System.out.println("la grille est finite on commence a compter les points");
-            comptagePoint(objettab, p, tabScore);
+            comptagePoint(objettab, lp, tabScore);
         } while (rejouer());
 
     }
@@ -151,12 +152,12 @@ public class ProjetJava {
         }
     }
 
-    public static void genererTab(Grille objettab, Position pCour) {
+    public static void genererTab(Grille objettab, /*Position pCour*/ListePos lpCour) {
 
         /*Fontion qui place des □ pour generer la grille*/
-        if (pCour.x != 99 || pCour.y != 99) {
-            objettab.tab[pCour.y][pCour.x] = "□";  // logique pourquoi inversé : abcsisse = collone 
-            genererTab(objettab, Position.suivant(pCour));
+        if (lpCour.x != 0 || lpCour.y != 0) {
+            objettab.tab[lpCour.y][lpCour.x] = "□";  // logique pourquoi inversé : abcsisse = collone 
+            genererTab(objettab, /*Position.suivant(pCour)*/lpCour.suivant);
 
         }
     }
@@ -195,7 +196,7 @@ public class ProjetJava {
 
     }
 
-    public static void Placement(Grille objettab, Position p, int valeurJeton) {
+    public static void Placement(Grille objettab, /*Position p*/ListePos lp, int valeurJeton) {
 
 
         //CHOIX PLACEMENT
@@ -211,7 +212,7 @@ public class ProjetJava {
             choixOrdonnee = objettab.tab.length - sc.nextInt();
             //tab.length - k
             //TRAITEMENT PLACEMENT
-        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, lp)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
 
         objettab.tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
 
@@ -235,24 +236,25 @@ public class ProjetJava {
 
     }
 
-    public static void comptagePoint(Grille objettab, Position pCour, int[] tabScore) {
+    public static void comptagePoint(Grille objettab, /*Position pCour*/ListePos lpCour, int[] tabScore) {
 
         /*Fonction qui sert a compter le score de la table*/
         // if (pCour.x != 12 || pCour.y != 11) {
-        if (Position.suivant(pCour).x != 99 || Position.suivant(pCour).y != 99) {
+        //if (Position.suivant(pCour).x != 0 || Position.suivant(pCour).y != 0) {
+         if (lpCour.suivant.x != 0 || lpCour.suivant.y != 0) {
             /*Ne parche pas pour toute les grille :'( 
              * car on a besoin d ela penutieme case
              * */
 
 
-            if (Integer.parseInt(objettab.tab[pCour.y][pCour.x]) <= Integer.parseInt(objettab.tab[Position.suivant(pCour).y][Position.suivant(pCour).x])) {
+            if (Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]) <= Integer.parseInt(objettab.tab[lpCour.suivant.y][lpCour.suivant.x])) {
                 longueurScore++;
-                comptagePoint(objettab, Position.suivant(pCour), tabScore);
+                comptagePoint(objettab,lpCour.suivant, tabScore);
 
             } else {
                 tabScore[longueurScore + 1]++;
                 longueurScore = 0;
-                comptagePoint(objettab, Position.suivant(pCour), tabScore);
+                comptagePoint(objettab, lpCour.suivant, tabScore);
             }
 
 
@@ -280,15 +282,15 @@ public class ProjetJava {
 
     }
 
-    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) {
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, /*Position pCour*/ListePos lpCour) {
 
         /*Fonction qui verifie que la choix du joueur est bien dans la grille*/
-        if (pCour.x != 99 || pCour.y != 99) {
-            if (pCour.x == choixAbscisse && pCour.y == choixOrdonnee) {
+        if (lpCour.x != 0 || lpCour.y != 0) {
+            if (lpCour.x == choixAbscisse && lpCour.y == choixOrdonnee) {
                 return true;
 
             } else {
-                return verifPosition(choixAbscisse, choixOrdonnee, Position.suivant(pCour));
+                return verifPosition(choixAbscisse, choixOrdonnee, lpCour.suivant);
 
             }
         } else {
@@ -297,7 +299,7 @@ public class ProjetJava {
 
     }
 
-    public static void PlacementRobot(Grille objettab, Position p, int valeurJeton) {
+    public static void PlacementRobot(Grille objettab, /*Position p*/ListePos lp, int valeurJeton) {
 
 
 
@@ -309,7 +311,7 @@ public class ProjetJava {
         do {
             choixAbscisse = 2 + r.nextInt(11);
             choixOrdonnee = 2 + r.nextInt(10);
-        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, lp)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));
         /*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
 
         objettab.tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
