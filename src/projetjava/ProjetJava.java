@@ -118,7 +118,7 @@ public class ProjetJava {
             } while (verifTab(objettab));
             // la grille est finite on commence a compter les point
             affichertab(objettab);
-            System.out.println("la grille est finite on commence a compter les points");
+            System.out.println("la grille est finie on commence a compter les points");
             comptagePoint(objettab, lp, tabScore);
         } while (rejouer());
 
