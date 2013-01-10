@@ -1,19 +1,22 @@
 package projetjava;
 
-// >>>>>>>>>>>> IMPORTANT => LISTE COMMENTAIRE GLOBAL A LA FIN <<<<<<<<<<
+import java.util.Random;
 import java.util.Scanner;
 
-/*import java.util.Random;*/
-/*int valeur = 1 + r.nextInt(37 - 1);*/
 public class ProjetJava {
+    
+    // PLACER DES JETON ET PAS DES NOMBRE ; idee
 
+    // INITIALISATION VARIABLE
     static int compt = 0;
     static int longueurScore = 0;
     static int[] tabScore = new int[21];
+    static int scoreTotal = 0;
 
     public static void main(String[] args) {
 
-        System.out.println("------------------------------------------------------------------------------------");
+        /* Fonction Principale*/
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("STREAM");
         System.out.println("Par Erwan Le Poder et Florian Migot");
         menuPrincipale();
@@ -22,19 +25,20 @@ public class ProjetJava {
 
     public static void menuPrincipale() {
 
+        /*Fonction du menu principale*/
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("MENU");
         System.out.println("1-jouer");
-        System.out.println("2-deux"); // regle du jeux
-        System.out.println("3-trois");
-        System.out.println("Votre choix ? (automatiquement 1 pour les tests)");
-        // int choix = sc.nextInt();
+        System.out.println("2-règle du jeux"); // regle du jeux
+        System.out.println("3-quitter");
+        System.out.println("Votre choix ?");// automatiquement 1 pour les tests
+        //int choix = sc.nextInt();
         int choix = 1;
-        System.out.println("Votre choix de menu est le\t" + choix);
         switch (choix) {
             case 1:
-                jouer();
+                menuJouer();
+                menuPrincipale();
                 break;
             case 2:
                 //deux();
@@ -49,33 +53,90 @@ public class ProjetJava {
 
     }
 
-    public static void jouer() {
+    public static void menuJouer() {
 
-        String[][] tab = new String[10][11];
-        Position p = new Position();
-        netoyerTab(tab);
-        genererTab(tab, p);
-        // reboucler ici
+        /*Fonction du menu si le joueur a decider de jouer
+         * gestion du choix de la grille
+         */
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.println("MENU JOUER");
+        System.out.println("1-Grille Basique");
+        System.out.println("2-Grille Boucle"); // regle du jeux
+        System.out.println("3-Grille Double Boucle");
+        System.out.println("4-Grille Surface");
+        System.out.println("5-Menu principale");
+        System.out.println("Votre choix ?");// automatiquement 1 pour les tests
+        int choix = sc.nextInt();
+        if (choix > 0 && choix < 5) {
+            jouerGrille(choix);
+            menuJouer();
+        } else {
+            menuPrincipale();
+
+        }
+
+
+    }
+
+    public static void jouerGrille(int nbGrille) {
+
+        /*Fonction d'initialisation et de traitement de la grille 
+         * qui appelle des fonctions valables pour toute les grilles
+         */
+        Grille objettab = new Grille(nbGrille); //grille pour la grille 
+        // Position p = new Position(nbGrille); // position pour la grille 
+        ListePos lp = new ListePos(nbGrille);
+
+
+
         do {
-            affichertab(tab);
-            nombreAleatPlacement(tab, p);
-        } while (verifTab(tab));
-        // la grille est finite on commence a compter les point
-        affichertab(tab);
-        System.out.println("la grille est finite on commence a compter les points");
-        comptagePoint(tab, p, tabScore);
+            netoyerTab(objettab);
+            genererTab(objettab, lp);
+            Jeton.reinitialisertabNbAleat(); //sert a reinyinialiter les jeton car sans ca il y pas asser de jeton pour faire les 2 truc
+            // de tout facon une jeux de jeton part partie:
+            // il fau netoyer le score <<<<<<<<<<<<<<< A FAIRE
+            reinitialisertabScore(tabScore);
+            longueurScore = 0;
+            // reboucler ici
+
+
+            for (int i = 0; i < objettab.longueur; i++) {
+                objettab.tab[1][i] = ".";
+            }
+            for (int j = 0; j < objettab.hauteur; j++) {
+                objettab.tab[j][1] = ".";
+
+            }
+            for (int k = 1; k < objettab.hauteur - 1; k++) {
+
+                objettab.tab[objettab.tab.length - k][0] = String.valueOf(k);
+            }
+            for (int l = 1; l < objettab.longueur - 1; l++) {
+
+                objettab.tab[0][l + 1] = String.valueOf(l);
+            }
+            do {
+                affichertab(objettab);
+                //Placement(tab, p, nombreAleat());
+                PlacementRobot(objettab, lp, nombreAleat());
+            } while (verifTab(objettab));
+            // la grille est finite on commence a compter les point
+            affichertab(objettab);
+            System.out.println("la grille est finie on commence a compter les points");
+            comptagePoint(objettab, lp, tabScore);
+        } while (rejouer());
 
     }
 
     public static boolean rejouer() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("REJOUER");
         System.out.println("1-oui");
         System.out.println("2-non");
         System.out.println("Votre choix ?");
         int choix = sc.nextInt();
-        System.out.println("Votre choix de menu est le\t" + choix);
         if (choix == 1) {
             return true;
         } else {
@@ -86,53 +147,46 @@ public class ProjetJava {
 
     }
 
-    public static void netoyerTab(String[][] tab) { // initialemnt un table string a pour valeur null on renplace par rien
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab[i].length; j++) {
-                tab[i][j] = " ";
+    public static void netoyerTab(Grille objettab) {
+
+        /*Fonction qui reinitialise le tableau*/
+        for (int i = 0; i < objettab.tab.length; i++) {
+            for (int j = 0; j < objettab.tab[i].length; j++) {
+                objettab.tab[i][j] = " ";
             }
         }
-
-
-
     }
 
-    public static void genererTab(String[][] tab, Position pCour) {
+    public static void genererTab(Grille objettab, /*Position pCour*/ ListePos lpCour) {
 
-        // Systeme de comptage ne pas supprimer
-        /*System.out.println(pCour);
-         System.out.println(compt);
-         compt++;*/
-
-        if (pCour.x != 11 || pCour.y != 9) {   // on rajoute un en plus pour avoir le dernier ! 10 -> 11
-            tab[pCour.y][pCour.x] = "*";  // logique pourquoi inversé ! abcsisse = collone 
-            genererTab(tab, Position.suivant(pCour));
+        /*Fontion qui place des □ pour generer la grille*/
+        if (lpCour.x != 0 || lpCour.y != 0) {
+            objettab.tab[lpCour.y][lpCour.x] = "□";  // logique pourquoi inversé : abcsisse = collone 
+            genererTab(objettab, /*Position.suivant(pCour)*/ lpCour.suivant);
 
         }
     }
 
-    public static void affichertab(String[][] tab) {
+    public static void affichertab(Grille objettab) {
 
-        System.out.println("------------------------------------------------------------------------------------");
+        /*Fonction d'affichege de la grille*/
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("VOTRE GRILLE ACTUELLE:");
-        // be careful affiche pas dans le bon sens mais ya de l'idée
-        // ca marche maintenant  cf ligne 69
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab[i].length; j++) {
-                System.out.print(tab[i][j] + "\t");
+        for (int i = 0; i < objettab.tab.length; i++) {
+            for (int j = 0; j < objettab.tab[i].length; j++) {
+                System.out.print(objettab.tab[i][j] + "\t");
             }
             System.out.println();
             System.out.println();
             System.out.println();
         }
-
     }
 
-    public static void nombreAleatPlacement(String[][] tab, Position p) {
+    public static int nombreAleat() {
 
         //NBALEAT
         Scanner sc = new Scanner(System.in);
-        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
         Jeton j = new Jeton();
         int valeurJeton = j.valeur;
@@ -141,31 +195,42 @@ public class ProjetJava {
         // en fait c'ets bon jai trouvé tout seul ca marche
         // int valeurJeton = 5;
         System.out.println("Le jeton tiré est le :\t" + valeurJeton);
-        //CHOIX PLACEMENT
-        System.out.println("------------------------------------------------------------------------------------");
-        System.out.println("SELECTION EMPLACEMENT:");
-        int choixAbscisse;
-        int choixOrdonnee;
-        do {
-            System.out.println("Choix Abscisse du Jeton : ");
-            choixAbscisse = sc.nextInt();
-            System.out.println("Choix Ordonne du Jeton");
-            choixOrdonnee = sc.nextInt();
-            System.out.println("Votre choix de placcement est\t Abscisse:\t" + choixAbscisse + "\t Ordonnee\t" + choixOrdonnee);
-            //TRAITEMENT PLACEMENT
-        } while ((!verifPosition(choixAbscisse, choixOrdonnee, p)) || (tab[choixOrdonnee][choixAbscisse] != "*"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
-
-        tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
-
+        return valeurJeton;
 
 
 
     }
 
-    public static boolean verifTab(String[][] tab) {
-        for (int i = 0; i < tab.length; i++) {
-            for (int j = 0; j < tab[i].length; j++) {
-                if (tab[i][j] == "*") { // si on trouve encore au moins une etoile dans la grille
+    public static void Placement(Grille objettab, /*Position p*/ ListePos lp, int valeurJeton) {
+
+
+        //CHOIX PLACEMENT
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.println("SELECTION EMPLACEMENT:");
+        int choixAbscisse;
+        int choixOrdonnee;
+        do {
+            System.out.println("Choix Abscisse du Jeton : ");
+            choixAbscisse = sc.nextInt() + 1;
+            System.out.println("Choix Ordonne du Jeton");
+            choixOrdonnee = objettab.tab.length - sc.nextInt();
+            //tab.length - k
+            //TRAITEMENT PLACEMENT
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, lp)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
+
+        objettab.tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
+
+
+
+    }
+
+    public static boolean verifTab(Grille objettab) {
+
+        /*Foncion qui sert a savoir si la grille est remplie*/
+        for (int i = 0; i < objettab.tab.length; i++) {
+            for (int j = 0; j < objettab.tab[i].length; j++) {
+                if (objettab.tab[i][j] == "□") {
                     return true;
 
                 }
@@ -176,42 +241,61 @@ public class ProjetJava {
 
     }
 
-    public static void comptagePoint(String[][] tab, Position pCour, int[] tabScore) { //marche pas pCour valeur cets pas ca je pense
-        if (pCour.x != 10 || pCour.y != 9) { // deuxieme version ca marche
+    public static void comptagePoint(Grille objettab, /*Position pCour*/ ListePos lpCour, int[] tabScore) {
 
-            if (Integer.parseInt(tab[pCour.y][pCour.x]) <= Integer.parseInt(tab[Position.suivant(pCour).y][Position.suivant(pCour).x])) {
+        /*Fonction qui sert a compter le score de la table*/
+        // if (pCour.x != 12 || pCour.y != 11) {
+        //if (Position.suivant(pCour).x != 0 || Position.suivant(pCour).y != 0) {
+        if (lpCour.suivant.x != 0 || lpCour.suivant.y != 0) {
+            /*Ne parche pas pour toute les grille :'( 
+             * car on a besoin d ela penutieme case
+             * */
+
+
+            if (Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]) <= Integer.parseInt(objettab.tab[lpCour.suivant.y][lpCour.suivant.x])) {
                 longueurScore++;
-                comptagePoint(tab, Position.suivant(pCour), tabScore);
-
-                // si le dernier test est valide le dernier groupe de point n'est pas pris en compte 
-                //a retravailler mais sinon cets bon
+                comptagePoint(objettab, lpCour.suivant, tabScore);
 
             } else {
                 tabScore[longueurScore + 1]++;
                 longueurScore = 0;
-                comptagePoint(tab, Position.suivant(pCour), tabScore);
+                comptagePoint(objettab, lpCour.suivant, tabScore);
             }
 
 
 
-        }else{
-        tabScore[longueurScore + 1]++;
-        longueurScore = 0;
-        //tabScore[longueurScore + 1]++;       on pourrazi rajouter ca amis j'ai peur que ca le fasse plein de foie a voir
-// ra jouter ptet un else du if, comme ca ca le fait que une fois a la fin
-        int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
-        System.out.println(pointScore);
+        } else {
+            tabScore[longueurScore + 1]++;
+            longueurScore = 0;
+            int pointScore = tabScore[2] * 1 + tabScore[3] * 3 + tabScore[4] * 5 + tabScore[5] * 7 + tabScore[6] * 9 + tabScore[7] * 11 + tabScore[8] * 15 + tabScore[9] * 20 + tabScore[10] * 25 + tabScore[11] * 30 + tabScore[12] * 35 + tabScore[13] * 40 + tabScore[14] * 50 + tabScore[15] * 60 + tabScore[16] * 70 + tabScore[17] * 85 + tabScore[18] * 100 + tabScore[19] * 150 + tabScore[20] * 300;
+            System.out.println("Score de la partie:" + pointScore);
+            scoreTotal = scoreTotal + pointScore;
+            System.out.println("Score total:" + scoreTotal);
+
         }
 
     }
 
-    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, Position pCour) { //verifie que le choix du joeuur est dans la grille
-        if (pCour.x != 11 || pCour.y != 9) {
-            if (pCour.x == choixAbscisse && pCour.y == choixOrdonnee) {
+    public static void reinitialisertabScore(int[] tabScore) {
+
+        /*Fonction qui permet de reinitialiser la table des score*/
+        for (int i = 0; i < tabScore.length; i++) {
+            tabScore[i] = 0;
+
+        }
+
+
+    }
+
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, /*Position pCour*/ ListePos lpCour) {
+
+        /*Fonction qui verifie que la choix du joueur est bien dans la grille*/
+        if (lpCour.x != 0 || lpCour.y != 0) {
+            if (lpCour.x == choixAbscisse && lpCour.y == choixOrdonnee) {
                 return true;
 
             } else {
-                return verifPosition(choixAbscisse, choixOrdonnee, Position.suivant(pCour));
+                return verifPosition(choixAbscisse, choixOrdonnee, lpCour.suivant);
 
             }
         } else {
@@ -219,23 +303,25 @@ public class ProjetJava {
         }
 
     }
+
+    public static void PlacementRobot(Grille objettab, /*Position p*/ ListePos lp, int valeurJeton) {
+
+
+
+
+        int choixAbscisse;
+        int choixOrdonnee;
+        Random r = new Random();
+
+        do {
+            choixAbscisse = 2 + r.nextInt(11);
+            choixOrdonnee = 2 + r.nextInt(10);
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, lp)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));
+        /*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
+
+        objettab.tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
+
+
+
+    }
 }
-
-
-
-
-/* Le probleme que j'ai rencontré est que la grille (tab) est pour l'instant un tableau de char 
- * (caractère) mais on mais des int dedant (chiffre)  donc ya une methode pour transformer un chiffre 
- * en cartaère quitte a retransforme lors quon ferra le decompte des points mais lorsque cest des nombres
- * (plus de 1 chiffre) on peux pas mettre des hcar mais des String , du coup c'ets un joyeux bordel
- * 
- * Jai essayer avec un tableau en sting on verra pour moi cets la meilleur solution
- * 
- * verifier que un jeton peux pes etre jouer plein de fois
- * je crois quil y a un bug a se niveau la
- * 
- * fail : on peut rettre un numbre a un endroit ou il y a deja un nombre
- * corriger
- * 
- * 
- */
