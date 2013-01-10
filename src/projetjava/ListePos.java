@@ -72,8 +72,8 @@ public class ListePos {
             ListePos suivant22 = new ListePos(7, 9, nbGrille, suivant23);
             ListePos suivant21 = new ListePos(7, 8, nbGrille, suivant22);
             ListePos suivant20 = new ListePos(7, 7, nbGrille, suivant21);
-            ListePos suivant19 = new ListePos(7, 6, nbGrille, suivant20);
-            ListePos suivant18 = new ListePos(7, 5, nbGrille, suivant19);
+           // ListePos suivant19 = new ListePos(7, 6, nbGrille, suivant20);
+            ListePos suivant18 = new ListePos(7, 5, nbGrille, suivant20);
             ListePos suivant17 = new ListePos(7, 4, nbGrille, suivant18);
             ListePos suivant16 = new ListePos(7, 3, nbGrille, suivant17);
             ListePos suivant15 = new ListePos(7, 2, nbGrille, suivant16);

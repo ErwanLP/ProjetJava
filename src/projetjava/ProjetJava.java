@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ProjetJava {
+    
+    // PLACER DES JETON ET PAS DES NOMBRE ; idee
 
     // INITIALISATION VARIABLE
     static int compt = 0;
@@ -66,10 +68,13 @@ public class ProjetJava {
         System.out.println("5-Menu principale");
         System.out.println("Votre choix ?");// automatiquement 1 pour les tests
         int choix = sc.nextInt();
-        //int choix = 1;
-        jouerGrille(choix);
-        menuJouer();
+        if (choix > 0 && choix < 5) {
+            jouerGrille(choix);
+            menuJouer();
+        } else {
+            menuPrincipale();
 
+        }
 
 
     }
@@ -80,7 +85,7 @@ public class ProjetJava {
          * qui appelle des fonctions valables pour toute les grilles
          */
         Grille objettab = new Grille(nbGrille); //grille pour la grille 
-       // Position p = new Position(nbGrille); // position pour la grille 
+        // Position p = new Position(nbGrille); // position pour la grille 
         ListePos lp = new ListePos(nbGrille);
 
 
@@ -152,12 +157,12 @@ public class ProjetJava {
         }
     }
 
-    public static void genererTab(Grille objettab, /*Position pCour*/ListePos lpCour) {
+    public static void genererTab(Grille objettab, /*Position pCour*/ ListePos lpCour) {
 
         /*Fontion qui place des □ pour generer la grille*/
         if (lpCour.x != 0 || lpCour.y != 0) {
             objettab.tab[lpCour.y][lpCour.x] = "□";  // logique pourquoi inversé : abcsisse = collone 
-            genererTab(objettab, /*Position.suivant(pCour)*/lpCour.suivant);
+            genererTab(objettab, /*Position.suivant(pCour)*/ lpCour.suivant);
 
         }
     }
@@ -196,7 +201,7 @@ public class ProjetJava {
 
     }
 
-    public static void Placement(Grille objettab, /*Position p*/ListePos lp, int valeurJeton) {
+    public static void Placement(Grille objettab, /*Position p*/ ListePos lp, int valeurJeton) {
 
 
         //CHOIX PLACEMENT
@@ -236,12 +241,12 @@ public class ProjetJava {
 
     }
 
-    public static void comptagePoint(Grille objettab, /*Position pCour*/ListePos lpCour, int[] tabScore) {
+    public static void comptagePoint(Grille objettab, /*Position pCour*/ ListePos lpCour, int[] tabScore) {
 
         /*Fonction qui sert a compter le score de la table*/
         // if (pCour.x != 12 || pCour.y != 11) {
         //if (Position.suivant(pCour).x != 0 || Position.suivant(pCour).y != 0) {
-         if (lpCour.suivant.x != 0 || lpCour.suivant.y != 0) {
+        if (lpCour.suivant.x != 0 || lpCour.suivant.y != 0) {
             /*Ne parche pas pour toute les grille :'( 
              * car on a besoin d ela penutieme case
              * */
@@ -249,7 +254,7 @@ public class ProjetJava {
 
             if (Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]) <= Integer.parseInt(objettab.tab[lpCour.suivant.y][lpCour.suivant.x])) {
                 longueurScore++;
-                comptagePoint(objettab,lpCour.suivant, tabScore);
+                comptagePoint(objettab, lpCour.suivant, tabScore);
 
             } else {
                 tabScore[longueurScore + 1]++;
@@ -282,7 +287,7 @@ public class ProjetJava {
 
     }
 
-    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, /*Position pCour*/ListePos lpCour) {
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, /*Position pCour*/ ListePos lpCour) {
 
         /*Fonction qui verifie que la choix du joueur est bien dans la grille*/
         if (lpCour.x != 0 || lpCour.y != 0) {
@@ -299,7 +304,7 @@ public class ProjetJava {
 
     }
 
-    public static void PlacementRobot(Grille objettab, /*Position p*/ListePos lp, int valeurJeton) {
+    public static void PlacementRobot(Grille objettab, /*Position p*/ ListePos lp, int valeurJeton) {
 
 
 
