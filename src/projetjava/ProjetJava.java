@@ -45,7 +45,7 @@ public class ProjetJava {
                 menuPrincipale();
                 break;
             case 3:
-                //trois();
+                regles();
                 break;
             case 4:
                 System.out.println("Fin du jeux");
@@ -120,7 +120,7 @@ public class ProjetJava {
             affichertab(objettab);
             System.out.println("la grille est finie on commence a compter les points");
             //comptagePoint(objettab, lp, tabScore);
-            comptagePoint2(objettab, lp, tabScore);
+            comptagePoint2(objettab, lp);
         } while (rejouer());
 
     }
@@ -259,7 +259,7 @@ public class ProjetJava {
 
     }
 
-    public static void comptagePoint2(Grille objettab, ListePos lpCour, int[] tabScore) {
+    public static void comptagePoint2(Grille objettab, ListePos lpCour) {
         int[] grilleligne = new int[20];
         int i = 0;
         while (lpCour.x != 0 || lpCour.y != 0) {
@@ -366,7 +366,7 @@ public class ProjetJava {
 
     }
     
-    public static void règles() {
+    public static void regles() {
         
         System.out.println(" ------------------------------------------------------------------");
         System.out.println("|                        PRINCIPE DU JEU                           |");
