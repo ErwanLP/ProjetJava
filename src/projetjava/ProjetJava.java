@@ -129,8 +129,8 @@ public class ProjetJava {
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("REJOUER");
-        System.out.println("1-oui");
-        System.out.println("2-non");
+        System.out.println("1-Oui");
+        System.out.println("2-Non");
         System.out.println("Votre choix ?");
         int choix = sc.nextInt();
         if (choix == 1) {
@@ -229,9 +229,9 @@ public class ProjetJava {
         int choixAbscisse;
         int choixOrdonnee;
         do {
-            System.out.println("Choix Abscisse du Jeton : ");
+            System.out.println("Choix de l'Abscisse du Jeton : ");
             choixAbscisse = sc.nextInt() + 1;
-            System.out.println("Choix Ordonne du Jeton");
+            System.out.println("Choix de l'Ordonnée du Jeton");
             choixOrdonnee = objettab.tab.length - sc.nextInt();
             //tab.length - k
             //TRAITEMENT PLACEMENT
@@ -364,5 +364,83 @@ public class ProjetJava {
 
 
 
+    }
+    
+    public static void règles() {
+        
+        System.out.println(" ------------------------------------------------------------------");
+        System.out.println("|                        PRINCIPE DU JEU                           |");
+        System.out.println(" ------------------------------------------------------------------\n\n");
+        System.out.println("o	Au début de chaque partie, tous les jetons sont initialisés.");
+        System.out.println("        Vous disposez alors des jetons suivants: 1 jeton Є {1,..,10}, 2 jetons Є {11,..,19}, 1 jeton Є {20,..,30}, 1 jeton joker.");
+        System.out.println("o	Placer les nombres tirés aléatoirement dans une grille de manière à obtenir une séquence (suite) non interrompue de nombres croissants.");
+        System.out.println("o	Une partie se déroule en plusieurs tours: tant que tous les nombres ne sont pas tous tirés et placés, la partie n'est pas terminée.");
+        System.out.println("o	Une fois toutes les cases remplies, la partie se termine donc et votre score s'affiche. Il est alors possible de s’arrêter ou de continuer, le score sera cumulé.");
+        System.out.println("o	Enfin, le but est d'obtenir les plus longues séquences pour un maximum de point.\n\n");
+        System.out.println(" ------------------------------------------------------------------");
+        System.out.println("|                       LISTE DES GRILLES                          |");
+        System.out.println(" ------------------------------------------------------------------\n\n");
+        System.out.println("1er Grille: Basique\n");
+        System.out.println("□ □ □ □ □ □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □ □ □ □ □ □\n");
+        
+        System.out.println("2éme Grille: Boucle\n");
+        System.out.println("            □ □ □ □");
+        System.out.println("            □      □");
+        System.out.println("            □      □");
+        System.out.println("            □      □");
+        System.out.println("□ □ □ □ □ □ □ □ □");
+        System.out.println("            □");
+        System.out.println("            □");
+        System.out.println("            □\n");
+        
+        System.out.println("3éme Grille: Double boucle\n");
+        System.out.println("       □ □ □");
+        System.out.println("       □    □");
+        System.out.println("       □    □");
+        System.out.println("□ □ □ □ □ □");
+        System.out.println("       □    □");
+        System.out.println("       □    □");
+        System.out.println("       □ □ □\n");
+        
+        System.out.println("4éme Grille: Surface\n");
+        System.out.println("□ □ □ □ □ ");
+        System.out.println("□ □ □ □ □ ");
+        System.out.println("□ □ □ □ □ ");
+        System.out.println("□ □ □ □ □ \n\n");
+        
+        System.out.println(" ------------------------------------------------------------------");
+        System.out.println("|                     COMPTAGE DES POINTS                          |");
+        System.out.println(" ------------------------------------------------------------------\n\n");
+        System.out.println("Longueur & Score");
+        System.out.println("    1        0");
+        System.out.println("    2        1");
+        System.out.println("    3        3");
+        System.out.println("    4        5");
+        System.out.println("    5        7");
+        System.out.println("    6        9");
+        System.out.println("    7        11");
+        System.out.println("    8        15");
+        System.out.println("    9        20");
+        System.out.println("    10       25");
+        System.out.println("    11       30");
+        System.out.println("    12       35");
+        System.out.println("    13       40");
+        System.out.println("    14       50");
+        System.out.println("    15       60");
+        System.out.println("    16       70");
+        System.out.println("    17       85");
+        System.out.println("    18       100");
+        System.out.println("    19       150");
+        System.out.println("    20       3000");
+        
     }
 }
