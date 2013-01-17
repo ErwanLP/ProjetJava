@@ -463,105 +463,95 @@ public class ProjetJava {
                 int scoreCour;
 
                 scoreCour = sgb.value() + shd.value();
-                System.out.println(scoreCour);
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sgh.value() + sb.value();
-                 System.out.println(scoreCour);
-                if (scoreCour > scoreBest) {
-                    scoreBest = scoreCour;
-                }
-                scoreCour = sg.value() + sb.value() + shd.value();
-                 System.out.println(scoreCour);
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sgd.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sbd.value() + sg.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sbh.value() + sg.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc1.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc2.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc3.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc4.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc5.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc6.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc7.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc8.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc9.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc10.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc11.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc12.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc13.value() + sg.value() + sb.value();
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
                 scoreCour = sblc14.value() + sg.value() + sb.value();
-                 System.out.println(sblc14.value());
-                  System.out.println(sg.value());
-                   System.out.println(sb.value());
-                 System.out.println(scoreCour);
+
                 if (scoreCour > scoreBest) {
                     scoreBest = scoreCour;
                 }
@@ -697,7 +687,7 @@ public class ProjetJava {
     public static int[] rotation(int[] tab) {
         /* fonction qui sert a faire tourné les element d'un tableau*/
         int var = tab[0];
-        for (int i = 0; i < tab.length - 2; i++) {
+        for (int i = 0; i <= tab.length - 2; i++) {
             tab[i] = tab[i + 1];
         }
         tab[tab.length - 1] = var;
