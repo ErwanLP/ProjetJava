@@ -4,6 +4,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ProjetJava {
+    
+    
+    /* joker
+     * grille 3 et 4
+     * calcule score grile 2
+     * extention + ou -
+     */
 
     // INITIALISATION VARIABLE
     static int compt = 0;
@@ -198,16 +205,14 @@ public class ProjetJava {
 
     public static int nombreAleat(Random r) {
 
-        //NBALEA
+        /* fonction qui va chercher un nombre aléatoire */
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");
         Jeton j = new Jeton(r);
+        // on tire un nouveau jeton
         int valeurJeton = j.valeur;
-        // bon ca marche pas mais ne pas sup (a poursuivre),  imaginons que le chiffre soit 5
-        // mail envoyer a manceny pour de l'aide
-        // en fait c'ets bon jai trouvé tout seul ca marche
-        // int valeurJeton = 5;
+        // on regarde si le jeton est le joker, si oui on demande au joueur le valeur du jeton qu'il veux
         if (valeurJeton != 99) {
             System.out.println("Le jeton tiré est le :\t" + valeurJeton);
         } else {
@@ -237,8 +242,9 @@ public class ProjetJava {
             choixOrdonnee = objettab.tab.length - sc.nextInt();
             //tab.length - k
             //TRAITEMENT PLACEMENT
-        } while ((!verifPosition(choixAbscisse, choixOrdonnee, lp)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));/*condition si c'est dans la grille et que il n'y est aps deja un nombre (en test)*/
-
+            // on regarde qui l'enplacement choisi est dans la grille et qui cet emplacement en vide (un jeton n'a pas été déja placé)
+        } while ((!verifPosition(choixAbscisse, choixOrdonnee, lp)) || (objettab.tab[choixOrdonnee][choixAbscisse] != "□"));
+        // on place le jeton
         objettab.tab[choixOrdonnee][choixAbscisse] = String.valueOf(valeurJeton);
 
 
@@ -286,13 +292,11 @@ public class ProjetJava {
 
     public static void comptagePoint(Grille objettab, /*Position pCour*/ ListePos lpCour, int[] tabScore) {
 
-        /*Fonction qui sert a compter le score de la table*/
-        // if (pCour.x != 12 || pCour.y != 11) {
-        //if (Position.suivant(pCour).x != 0 || Position.suivant(pCour).y != 0) {
+        
+        /* ancien comptage de point qui de repont pas au cahier des charge*/
+
         if (lpCour.suivant.x != 0 || lpCour.suivant.y != 0) {
-            /*Ne parche pas pour toute les grille :'( 
-             * car on a besoin d ela penutieme case
-             * */
+    
 
 
             if (Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]) <= Integer.parseInt(objettab.tab[lpCour.suivant.y][lpCour.suivant.x])) {
@@ -330,7 +334,7 @@ public class ProjetJava {
 
     }
 
-    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, /*Position pCour*/ ListePos lpCour) {
+    public static boolean verifPosition(int choixAbscisse, int choixOrdonnee, ListePos lpCour) {
 
         /*Fonction qui verifie que la choix du joueur est bien dans la grille*/
         if (lpCour.x != 0 || lpCour.y != 0) {
@@ -350,7 +354,7 @@ public class ProjetJava {
     public static void PlacementRobot(Grille objettab, /*Position p*/ ListePos lp, int valeurJeton) {
 
 
-
+        // AI random pour tester le jeu;
 
         int choixAbscisse;
         int choixOrdonnee;
