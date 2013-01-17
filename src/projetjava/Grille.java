@@ -7,7 +7,7 @@ public class Grille {
     int longueur;
     int hauteur;
     int nbGrille;
-    
+
     Grille(int nbGrille) {
 
 // On créer la première grille du jeu à l'aide des attributs :
@@ -17,7 +17,7 @@ public class Grille {
             hauteur = 12;
             longueur = 13;
         }
-        
+
 // On créer la deuxième grille du jeu à l'aide des attributs :
         if (nbGrille == 2) {
             this.tab = new String[10][11];
@@ -28,14 +28,22 @@ public class Grille {
 
 
         }
-        if(nbGrille == 3){
+        if (nbGrille == 3) {
             this.tab = new String[9][8];
             this.nbGrille = nbGrille;
             hauteur = 9;
-            longueur = 8;          
-            
-            
-            
+            longueur = 8;
+
+
+
+        }
+        if (nbGrille == 4) {
+            this.tab = new String[6][7];
+            this.nbGrille = nbGrille;
+            hauteur = 6;
+            longueur = 7;
+
+
         }
 
     }

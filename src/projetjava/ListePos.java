@@ -13,7 +13,7 @@ public class ListePos {
 // La position suivante
 
     ListePos(int nbGrille) {
-       
+
 // Initialisation de la case départ de la grille 1
         if (nbGrille == 1) {
             x = 2;
@@ -32,14 +32,22 @@ public class ListePos {
 // Appelle de la fonction fonctionSuivant qui permet de récupérer la position des autres cases de la grille
 // La grille 2 est ainsi défini
         }
-        if (nbGrille == 3){
-            x=2;
-            y=5;
+        if (nbGrille == 3) {
+            x = 2;
+            y = 5;
             this.nbGrille = nbGrille;
             suivant = fonctionSuivant(nbGrille);
-                   
-            
-            
+
+
+
+        }
+        if (nbGrille == 4) {
+            x = 2;
+            y = 2;
+            this.nbGrille = nbGrille;
+            suivant = fonctionSuivant(nbGrille);
+
+
         }
 
     }
@@ -85,7 +93,7 @@ public class ListePos {
             ListePos suivant22 = new ListePos(7, 9, nbGrille, suivant23);
             ListePos suivant21 = new ListePos(7, 8, nbGrille, suivant22);
             ListePos suivant20 = new ListePos(7, 7, nbGrille, suivant21);
-           // ListePos suivant19 = new ListePos(7, 6, nbGrille, suivant20);  // <- Inutile : position de la case par laquelle on passe deux fois
+            // ListePos suivant19 = new ListePos(7, 6, nbGrille, suivant20);  // <- Inutile : position de la case par laquelle on passe deux fois
             ListePos suivant18 = new ListePos(7, 5, nbGrille, suivant20);
             ListePos suivant17 = new ListePos(7, 4, nbGrille, suivant18);
             ListePos suivant16 = new ListePos(7, 3, nbGrille, suivant17);
@@ -106,7 +114,7 @@ public class ListePos {
             ListePos suivant = new ListePos(3, 6, nbGrille, suivant2);
             return suivant;
         }
-        if(nbGrille == 3){
+        if (nbGrille == 3) {
             ListePos suivant21 = new ListePos(0, 0, nbGrille, null);
             ListePos suivant20 = new ListePos(6, 5, nbGrille, suivant21);
             ListePos suivant18 = new ListePos(5, 6, nbGrille, suivant20);
@@ -128,16 +136,36 @@ public class ListePos {
             ListePos suivant2 = new ListePos(4, 5, nbGrille, suivant3);
             ListePos suivant = new ListePos(3, 5, nbGrille, suivant2);
             return suivant;
-            
-            
-            
-            
+
+
+
+
         }
-        
-        
-        else {
+        if (nbGrille == 4) {
             ListePos suivant20 = new ListePos(0, 0, nbGrille, null);
-            return suivant20;
+            ListePos suivant19 = new ListePos(2, 5, nbGrille, suivant20);
+            ListePos suivant18 = new ListePos(3, 5, nbGrille, suivant19);
+            ListePos suivant17 = new ListePos(4, 5, nbGrille, suivant18);
+            ListePos suivant16 = new ListePos(5, 5, nbGrille, suivant17);
+            ListePos suivant15 = new ListePos(6, 5, nbGrille, suivant16);
+            ListePos suivant14 = new ListePos(6, 4, nbGrille, suivant15);
+            ListePos suivant13 = new ListePos(5,4, nbGrille, suivant14);
+            ListePos suivant12 = new ListePos(4, 4, nbGrille, suivant13);
+            ListePos suivant11 = new ListePos(3, 4, nbGrille, suivant12);
+            ListePos suivant10 = new ListePos(2, 4, nbGrille, suivant11);
+            ListePos suivant9 = new ListePos(2, 3, nbGrille, suivant10);
+            ListePos suivant8 = new ListePos(3, 3, nbGrille, suivant9);
+            ListePos suivant7 = new ListePos(4, 3, nbGrille, suivant8);
+            ListePos suivant6 = new ListePos(5, 3, nbGrille, suivant7);
+            ListePos suivant5 = new ListePos(6, 3, nbGrille, suivant6);
+            ListePos suivant4 = new ListePos(6, 2, nbGrille, suivant5);
+            ListePos suivant3 = new ListePos(5, 2, nbGrille, suivant4);
+            ListePos suivant2 = new ListePos(4, 2, nbGrille, suivant3);
+            ListePos suivant = new ListePos(3, 2, nbGrille, suivant2);
+            return suivant;
+        } else {
+            ListePos suivant = new ListePos(0, 0, nbGrille, null);
+            return suivant;
         }
     }
 }

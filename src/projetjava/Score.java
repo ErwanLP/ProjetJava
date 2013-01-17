@@ -2,7 +2,7 @@ package projetjava;
 
 public class Score {
 
-     // Attribut  : tableau dont le score est calculé
+    // Attribut  : tableau dont le score est calculé
     int[] grid;
     // Attribut : tableau des scores en fonction de l'indice qui reflète la taille de la séquence
     int[] scores = {0, 0, 1, 3, 5, 7, 9, 11, 15, 20, 25, 30, 35, 40, 50, 60, 70, 85, 100, 150, 300};
@@ -71,25 +71,8 @@ public class Score {
         return false;
     }
 
-    private int value() {
+    int value() {
         // Le tableau des scores représentent les point gagnés par la séquence, on y additionne les points des autres séquences si elles existent;
         return scores[end - start] + ((next != null) ? next.value() : 0);
     }
-
-    private int getEnd() {
-        // Fonction qui return l'attribut end d'un objet
-        return end;
-    }
-
-    public String toString() {
-        // Fonction qui affiche le score
-        String res = new String("\n seq:[0");
-        for (Score i = this; i != null; i = i.next) {
-            res = res + ", " + i.getEnd();
-        }
-        res = res + "] with score:" + value();
-        return res;
-    }
-
-
 }

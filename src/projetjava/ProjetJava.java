@@ -4,15 +4,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class ProjetJava {
-    
-    
+
     /* joker
-     * grille 3 et 4
+     * grille 3 et 4 ->ok
      * calcule score grile 2
      * extention + ou -
-     */ 
+     */
     //a b a lka place de 1/2 (?)
-
     // INITIALISATION VARIABLE
     static int compt = 0;
     static int longueurScore = 0;
@@ -129,7 +127,7 @@ public class ProjetJava {
             affichertab(objettab);
 // Puis on affiche la grille complétée
             System.out.println("la grille est finie on commence a compter les points");
-            comptagePoint2(objettab, lp);
+            comptagePoint2(objettab, lp, nbGrille);
 // On calcul le score tant qu'il continue de jouer
         } while (rejouer());
 
@@ -218,7 +216,7 @@ public class ProjetJava {
             System.out.println("Le jeton tiré est le :\t" + valeurJeton);
         } else {
             System.out.println("Le jeton tiré est le Joker, choisisser une valeur:");
-        // Vérification si le nombre est bien.
+            // Vérification si le nombre est bien.
             valeurJeton = sc.nextInt();
         }
         return valeurJeton;
@@ -268,21 +266,344 @@ public class ProjetJava {
 
     }
 
-    public static void comptagePoint2(Grille objettab, ListePos lpCour) {
-        int[] grilleligne = new int[20];
-        int i = 0;
-        while (lpCour.x != 0 || lpCour.y != 0) {
+    public static void comptagePoint2(Grille objettab, ListePos lpCour, int nbGrille) {
 
-            grilleligne[i] = Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]);
-            System.out.print(i + "-" + grilleligne[i] + "\t");
-            i++;
-            lpCour = lpCour.suivant;
+        switch (nbGrille) {
+            case 1:
+
+                int[] grilleligne = new int[20];
+                int i = 0;
+                while (lpCour.x != 0 || lpCour.y != 0) {
+
+                    grilleligne[i] = Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]);
+                    System.out.print(i + "-" + grilleligne[i] + "\t");
+                    i++;
+                    lpCour = lpCour.suivant;
+                }
+                Score s = new Score(grilleligne);
+                System.out.println();
+                System.out.println(s.value());
+
+                break;
+            case 2:
+
+                int[] grilleLigneGauche = new int[5];
+                int[] grilleLigneBas = new int[3];
+                int[] grilleLigneGaucheBas = new int[9];
+                int[] grilleLigneHautDroite = new int[13];
+                int[] grilleLigneGaucheHaut = new int[19];
+                int[] grilleLigneBasHaut = new int[17];
+                int[] grilleLigneBasDroite = new int[17];
+                int[] grilleLigneGaucheDroite = new int[19];
+                int[] grilleligneBoucle = new int[14];
+
+                grilleLigneGauche[0] = Integer.parseInt(objettab.tab[6][2]);
+                grilleLigneGauche[1] = Integer.parseInt(objettab.tab[6][3]);
+                grilleLigneGauche[2] = Integer.parseInt(objettab.tab[6][4]);
+                grilleLigneGauche[3] = Integer.parseInt(objettab.tab[6][5]);
+                grilleLigneGauche[4] = Integer.parseInt(objettab.tab[6][6]);
+
+                grilleLigneBas[0] = Integer.parseInt(objettab.tab[9][7]);
+                grilleLigneBas[1] = Integer.parseInt(objettab.tab[8][7]);
+                grilleLigneBas[2] = Integer.parseInt(objettab.tab[7][7]);
+
+                grilleLigneGaucheBas[0] = Integer.parseInt(objettab.tab[6][2]);
+                grilleLigneGaucheBas[1] = Integer.parseInt(objettab.tab[6][3]);
+                grilleLigneGaucheBas[2] = Integer.parseInt(objettab.tab[6][4]);
+                grilleLigneGaucheBas[3] = Integer.parseInt(objettab.tab[6][5]);
+                grilleLigneGaucheBas[4] = Integer.parseInt(objettab.tab[6][6]);
+                grilleLigneGaucheBas[5] = Integer.parseInt(objettab.tab[6][7]);
+                grilleLigneGaucheBas[6] = Integer.parseInt(objettab.tab[7][7]);
+                grilleLigneGaucheBas[7] = Integer.parseInt(objettab.tab[8][7]);
+                grilleLigneGaucheBas[8] = Integer.parseInt(objettab.tab[9][7]);
+
+                grilleLigneHautDroite[0] = Integer.parseInt(objettab.tab[5][7]);
+                grilleLigneHautDroite[1] = Integer.parseInt(objettab.tab[4][7]);
+                grilleLigneHautDroite[2] = Integer.parseInt(objettab.tab[3][7]);
+                grilleLigneHautDroite[3] = Integer.parseInt(objettab.tab[2][7]);
+                grilleLigneHautDroite[4] = Integer.parseInt(objettab.tab[2][8]);
+                grilleLigneHautDroite[5] = Integer.parseInt(objettab.tab[2][9]);
+                grilleLigneHautDroite[6] = Integer.parseInt(objettab.tab[2][10]);
+                grilleLigneHautDroite[7] = Integer.parseInt(objettab.tab[3][10]);
+                grilleLigneHautDroite[8] = Integer.parseInt(objettab.tab[4][10]);
+                grilleLigneHautDroite[9] = Integer.parseInt(objettab.tab[5][10]);
+                grilleLigneHautDroite[10] = Integer.parseInt(objettab.tab[6][10]);
+                grilleLigneHautDroite[11] = Integer.parseInt(objettab.tab[6][9]);
+                grilleLigneHautDroite[12] = Integer.parseInt(objettab.tab[6][8]);
+
+                grilleLigneGaucheHaut[0] = Integer.parseInt(objettab.tab[6][2]);
+                grilleLigneGaucheHaut[1] = Integer.parseInt(objettab.tab[6][3]);
+                grilleLigneGaucheHaut[2] = Integer.parseInt(objettab.tab[6][4]);
+                grilleLigneGaucheHaut[3] = Integer.parseInt(objettab.tab[6][5]);
+                grilleLigneGaucheHaut[4] = Integer.parseInt(objettab.tab[6][6]);
+                grilleLigneGaucheHaut[5] = Integer.parseInt(objettab.tab[6][7]);
+                grilleLigneGaucheHaut[6] = Integer.parseInt(objettab.tab[5][7]);
+                grilleLigneGaucheHaut[7] = Integer.parseInt(objettab.tab[4][7]);
+                grilleLigneGaucheHaut[8] = Integer.parseInt(objettab.tab[3][7]);
+                grilleLigneGaucheHaut[9] = Integer.parseInt(objettab.tab[2][7]);
+                grilleLigneGaucheHaut[10] = Integer.parseInt(objettab.tab[2][8]);
+                grilleLigneGaucheHaut[11] = Integer.parseInt(objettab.tab[2][9]);
+                grilleLigneGaucheHaut[12] = Integer.parseInt(objettab.tab[2][10]);
+                grilleLigneGaucheHaut[13] = Integer.parseInt(objettab.tab[3][10]);
+                grilleLigneGaucheHaut[14] = Integer.parseInt(objettab.tab[4][10]);
+                grilleLigneGaucheHaut[15] = Integer.parseInt(objettab.tab[5][10]);
+                grilleLigneGaucheHaut[16] = Integer.parseInt(objettab.tab[6][10]);
+                grilleLigneGaucheHaut[17] = Integer.parseInt(objettab.tab[6][9]);
+                grilleLigneGaucheHaut[18] = Integer.parseInt(objettab.tab[6][8]);
+
+                grilleLigneBasHaut[0] = Integer.parseInt(objettab.tab[9][7]);
+                grilleLigneBasHaut[1] = Integer.parseInt(objettab.tab[8][7]);
+                grilleLigneBasHaut[2] = Integer.parseInt(objettab.tab[7][7]);
+                grilleLigneBasHaut[3] = Integer.parseInt(objettab.tab[6][7]);
+                grilleLigneBasHaut[4] = Integer.parseInt(objettab.tab[5][7]);
+                grilleLigneBasHaut[5] = Integer.parseInt(objettab.tab[4][7]);
+                grilleLigneBasHaut[6] = Integer.parseInt(objettab.tab[3][7]);
+                grilleLigneBasHaut[7] = Integer.parseInt(objettab.tab[2][7]);
+                grilleLigneBasHaut[8] = Integer.parseInt(objettab.tab[2][8]);
+                grilleLigneBasHaut[9] = Integer.parseInt(objettab.tab[2][9]);
+                grilleLigneBasHaut[10] = Integer.parseInt(objettab.tab[2][10]);
+                grilleLigneBasHaut[11] = Integer.parseInt(objettab.tab[3][10]);
+                grilleLigneBasHaut[12] = Integer.parseInt(objettab.tab[4][10]);
+                grilleLigneBasHaut[13] = Integer.parseInt(objettab.tab[5][10]);
+                grilleLigneBasHaut[14] = Integer.parseInt(objettab.tab[6][10]);
+                grilleLigneBasHaut[15] = Integer.parseInt(objettab.tab[6][9]);
+                grilleLigneBasHaut[16] = Integer.parseInt(objettab.tab[6][8]);
+
+                grilleLigneBasDroite[0] = Integer.parseInt(objettab.tab[9][7]);
+                grilleLigneBasDroite[1] = Integer.parseInt(objettab.tab[8][7]);
+                grilleLigneBasDroite[2] = Integer.parseInt(objettab.tab[7][7]);
+                grilleLigneBasDroite[3] = Integer.parseInt(objettab.tab[6][7]);
+                grilleLigneBasDroite[4] = Integer.parseInt(objettab.tab[6][8]);
+                grilleLigneBasDroite[5] = Integer.parseInt(objettab.tab[6][9]);
+                grilleLigneBasDroite[6] = Integer.parseInt(objettab.tab[6][10]);
+                grilleLigneBasDroite[7] = Integer.parseInt(objettab.tab[5][10]);
+                grilleLigneBasDroite[8] = Integer.parseInt(objettab.tab[4][10]);
+                grilleLigneBasDroite[9] = Integer.parseInt(objettab.tab[3][10]);
+                grilleLigneBasDroite[10] = Integer.parseInt(objettab.tab[2][10]);
+                grilleLigneBasDroite[11] = Integer.parseInt(objettab.tab[2][9]);
+                grilleLigneBasDroite[12] = Integer.parseInt(objettab.tab[2][8]);
+                grilleLigneBasDroite[13] = Integer.parseInt(objettab.tab[2][7]);
+                grilleLigneBasDroite[14] = Integer.parseInt(objettab.tab[3][7]);
+                grilleLigneBasDroite[15] = Integer.parseInt(objettab.tab[4][7]);
+                grilleLigneBasDroite[16] = Integer.parseInt(objettab.tab[5][7]);
+
+                grilleLigneGaucheDroite[0] = Integer.parseInt(objettab.tab[6][2]);
+                grilleLigneGaucheDroite[1] = Integer.parseInt(objettab.tab[6][3]);
+                grilleLigneGaucheDroite[2] = Integer.parseInt(objettab.tab[6][4]);
+                grilleLigneGaucheDroite[3] = Integer.parseInt(objettab.tab[6][5]);
+                grilleLigneGaucheDroite[4] = Integer.parseInt(objettab.tab[6][6]);
+                grilleLigneGaucheDroite[5] = Integer.parseInt(objettab.tab[6][7]);
+                grilleLigneGaucheDroite[6] = Integer.parseInt(objettab.tab[6][8]);
+                grilleLigneGaucheDroite[7] = Integer.parseInt(objettab.tab[6][9]);
+                grilleLigneGaucheDroite[8] = Integer.parseInt(objettab.tab[6][10]);
+                grilleLigneGaucheDroite[9] = Integer.parseInt(objettab.tab[5][10]);
+                grilleLigneGaucheDroite[10] = Integer.parseInt(objettab.tab[4][10]);
+                grilleLigneGaucheDroite[11] = Integer.parseInt(objettab.tab[3][10]);
+                grilleLigneGaucheDroite[12] = Integer.parseInt(objettab.tab[2][10]);
+                grilleLigneGaucheDroite[13] = Integer.parseInt(objettab.tab[2][9]);
+                grilleLigneGaucheDroite[14] = Integer.parseInt(objettab.tab[2][8]);
+                grilleLigneGaucheDroite[15] = Integer.parseInt(objettab.tab[2][7]);
+                grilleLigneGaucheDroite[16] = Integer.parseInt(objettab.tab[3][7]);
+                grilleLigneGaucheDroite[17] = Integer.parseInt(objettab.tab[4][7]);
+                grilleLigneGaucheDroite[18] = Integer.parseInt(objettab.tab[5][7]);
+
+                grilleligneBoucle[0] = Integer.parseInt(objettab.tab[6][7]);
+                grilleligneBoucle[1] = Integer.parseInt(objettab.tab[6][8]);
+                grilleligneBoucle[2] = Integer.parseInt(objettab.tab[6][9]);
+                grilleligneBoucle[3] = Integer.parseInt(objettab.tab[6][10]);
+                grilleligneBoucle[4] = Integer.parseInt(objettab.tab[5][10]);
+                grilleligneBoucle[5] = Integer.parseInt(objettab.tab[4][10]);
+                grilleligneBoucle[6] = Integer.parseInt(objettab.tab[3][10]);
+                grilleligneBoucle[7] = Integer.parseInt(objettab.tab[2][10]);
+                grilleligneBoucle[8] = Integer.parseInt(objettab.tab[2][9]);
+                grilleligneBoucle[9] = Integer.parseInt(objettab.tab[2][8]);
+                grilleligneBoucle[10] = Integer.parseInt(objettab.tab[2][7]);
+                grilleligneBoucle[11] = Integer.parseInt(objettab.tab[3][7]);
+                grilleligneBoucle[12] = Integer.parseInt(objettab.tab[4][7]);
+                grilleligneBoucle[13] = Integer.parseInt(objettab.tab[5][7]);
+
+                Score sg = new Score(grilleLigneGauche);
+                Score sb = new Score(grilleLigneBas);
+                Score sgb = new Score(grilleLigneGaucheBas);
+                Score shd = new Score(grilleLigneHautDroite);
+                Score sgh = new Score(grilleLigneGaucheHaut);
+                Score sbh = new Score(grilleLigneBasHaut);
+                Score sbd = new Score(grilleLigneBasDroite);
+                Score sgd = new Score(grilleLigneGaucheDroite);
+                Score sblc1 = new Score(grilleligneBoucle);
+                int[] grilleBoucleCour = rotation(grilleligneBoucle);
+                Score sblc2 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc3 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc4 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc5 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc6 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc7 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc8 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc9 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc10 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc11 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc12 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc13 = new Score(grilleBoucleCour);
+                grilleBoucleCour = rotation(grilleBoucleCour);
+                Score sblc14 = new Score(grilleBoucleCour);
+
+
+                int scoreBest = 0;
+                int scoreCour;
+
+                scoreCour = sgb.value() + shd.value();
+                System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sgh.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sg.value() + sb.value() + shd.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sgd.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sbd.value() + sg.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sbh.value() + sg.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc1.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc2.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc3.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc4.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc5.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc6.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc7.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc8.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc9.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc10.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc11.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc12.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc13.value() + sg.value() + sb.value();
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                scoreCour = sblc14.value() + sg.value() + sb.value();
+                 System.out.println(sblc14.value());
+                  System.out.println(sg.value());
+                   System.out.println(sb.value());
+                 System.out.println(scoreCour);
+                if (scoreCour > scoreBest) {
+                    scoreBest = scoreCour;
+                }
+                //
+                System.out.println(scoreBest);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+
         }
-        Score s = new Score(grilleligne);
-        System.out.println(s);
 
 
-        //Score s = new Score();
+
+
+
+
+
+
+
 
 
 
@@ -293,11 +614,11 @@ public class ProjetJava {
 
     public static void comptagePoint(Grille objettab, ListePos lpCour, int[] tabScore) {
 
-        
+
         /* Ancien comptage de point qui de répond pas au cahier des charges*/
 
         if (lpCour.suivant.x != 0 || lpCour.suivant.y != 0) {
-    
+
 
 
             if (Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]) <= Integer.parseInt(objettab.tab[lpCour.suivant.y][lpCour.suivant.x])) {
@@ -372,9 +693,24 @@ public class ProjetJava {
 
 
     }
-    
+
+    public static int[] rotation(int[] tab) {
+        /* fonction qui sert a faire tourné les element d'un tableau*/
+        int var = tab[0];
+        for (int i = 0; i < tab.length - 2; i++) {
+            tab[i] = tab[i + 1];
+        }
+        tab[tab.length - 1] = var;
+        return tab;
+
+
+
+
+
+    }
+
     public static void regles() {
-        
+
         System.out.println(" ------------------------------------------------------------------");
         System.out.println("|                        PRINCIPE DU JEU                           |");
         System.out.println(" ------------------------------------------------------------------\n\n");
@@ -398,7 +734,7 @@ public class ProjetJava {
         System.out.println("            □");
         System.out.println("            □");
         System.out.println("            □ □ □ □ □ □\n");
-        
+
         System.out.println("2éme Grille: Boucle\n");
         System.out.println("            □ □ □ □");
         System.out.println("            □      □");
@@ -408,7 +744,7 @@ public class ProjetJava {
         System.out.println("            □");
         System.out.println("            □");
         System.out.println("            □\n");
-        
+
         System.out.println("3éme Grille: Double boucle\n");
         System.out.println("       □ □ □");
         System.out.println("       □    □");
@@ -417,13 +753,13 @@ public class ProjetJava {
         System.out.println("       □    □");
         System.out.println("       □    □");
         System.out.println("       □ □ □\n");
-        
+
         System.out.println("4éme Grille: Surface\n");
         System.out.println("□ □ □ □ □ ");
         System.out.println("□ □ □ □ □ ");
         System.out.println("□ □ □ □ □ ");
         System.out.println("□ □ □ □ □ \n\n");
-        
+
         System.out.println(" ------------------------------------------------------------------");
         System.out.println("|                     COMPTAGE DES POINTS                          |");
         System.out.println(" ------------------------------------------------------------------\n\n");
@@ -448,6 +784,6 @@ public class ProjetJava {
         System.out.println("    18       100");
         System.out.println("    19       150");
         System.out.println("    20       300");
-        
+
     }
 }
