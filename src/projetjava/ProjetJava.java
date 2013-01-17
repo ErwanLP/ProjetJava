@@ -10,7 +10,8 @@ public class ProjetJava {
      * grille 3 et 4
      * calcule score grile 2
      * extention + ou -
-     */
+     */ 
+    //a b a lka place de 1/2 (?)
 
     // INITIALISATION VARIABLE
     static int compt = 0;

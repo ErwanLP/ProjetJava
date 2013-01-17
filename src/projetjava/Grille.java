@@ -28,6 +28,15 @@ public class Grille {
 
 
         }
+        if(nbGrille == 3){
+            this.tab = new String[9][8];
+            this.nbGrille = nbGrille;
+            hauteur = 9;
+            longueur = 8;          
+            
+            
+            
+        }
 
     }
 }
