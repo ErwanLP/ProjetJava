@@ -1,26 +1,27 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package projetjava;
 
-/**
- *
- * @author Erwan
- */
 public class ListePos {
 
+// On défini les attributs de la classe ListePos :
     int x;
+// L'abscisse
     int y;
+// L'ordonnée
     int nbGrille;
+// La grille
     ListePos suivant;
+// La position suivante
 
     ListePos(int nbGrille) {
+       
+// Initialisation de la case départ de la grille 1
         if (nbGrille == 1) {
             x = 2;
             y = 2;
             this.nbGrille = nbGrille;
             suivant = fonctionSuivant(nbGrille);
+// Appelle de la fonction Suivant qui permet de récupérer la position des autres cases de la grille
+// La grille 1 est ainsi défini
 
         }
         if (nbGrille == 2) {
@@ -28,6 +29,8 @@ public class ListePos {
             y = 6;
             this.nbGrille = nbGrille;
             suivant = fonctionSuivant(nbGrille);
+// Appelle de la fonction fonctionSuivant qui permet de récupérer la position des autres cases de la grille
+// La grille 2 est ainsi défini
         }
 
     }
@@ -42,6 +45,7 @@ public class ListePos {
 
     public static ListePos fonctionSuivant(int nbGrille) {
 
+// Ici sont définies les positions des cases de la grille 1 par leur abscisse et ordonnée :
         if (nbGrille == 1) {
             ListePos suivant20 = new ListePos(0, 0, nbGrille, null);
             ListePos suivant19 = new ListePos(12, 11, nbGrille, suivant20);
@@ -66,13 +70,13 @@ public class ListePos {
             return suivant;
         }
 
-
+// Ici sont définies les positions des cases de la grille 2 par leur abscisse et ordonnée :
         if (nbGrille == 2) {
             ListePos suivant23 = new ListePos(0, 0, nbGrille, null);
             ListePos suivant22 = new ListePos(7, 9, nbGrille, suivant23);
             ListePos suivant21 = new ListePos(7, 8, nbGrille, suivant22);
             ListePos suivant20 = new ListePos(7, 7, nbGrille, suivant21);
-           // ListePos suivant19 = new ListePos(7, 6, nbGrille, suivant20);
+           // ListePos suivant19 = new ListePos(7, 6, nbGrille, suivant20);  // <- Inutile : position de la case par laquelle on passe deux fois
             ListePos suivant18 = new ListePos(7, 5, nbGrille, suivant20);
             ListePos suivant17 = new ListePos(7, 4, nbGrille, suivant18);
             ListePos suivant16 = new ListePos(7, 3, nbGrille, suivant17);

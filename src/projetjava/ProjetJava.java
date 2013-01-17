@@ -103,25 +103,26 @@ public class ProjetJava {
             Random r;
             if (seed == 0) {
                 r = new Random(System.currentTimeMillis());
+// Si la seed = 0, on ne peux pas générer un tirage de jetons aléatoire
             } else {
                 r = new Random(seed);
             }
+// L'utilisateur rentre une seed et génére donc un tirage de jeton aléatoire
             longueurScore = 0;
-            // reboucler ici
-
-
 
             do {
                 affichertab(objettab);
+// On affiche la grille vierge
                 int valeurJeton = nombreAleat(r);
-                //Placement(objettab, lp, valeurJeton);
+// On affecte un jeton du tabeau des jetons à valeurJeton
                 PlacementRobot(objettab, lp, valeurJeton);
             } while (verifTab(objettab));
-            // la grille est finite on commence a compter les point
+// Tant que la grille n'est pas remplie, on place dans une case d'une grille donnée le jeton tiré
             affichertab(objettab);
+// Puis on affiche la grille complétée
             System.out.println("la grille est finie on commence a compter les points");
-            //comptagePoint(objettab, lp, tabScore);
             comptagePoint2(objettab, lp);
+// On calcul le score tant qu'il continue de jouer
         } while (rejouer());
 
     }
@@ -154,13 +155,13 @@ public class ProjetJava {
         }
     }
 
-    public static void genererTab(Grille objettab, /*Position pCour*/ ListePos lpCour) {
+    public static void genererTab(Grille objettab, ListePos lpCour) {
 
         /*Fontion qui place des □ pour generer la grille*/
 
         if (lpCour.x != 0 || lpCour.y != 0) {
             objettab.tab[lpCour.y][lpCour.x] = "□";  // logique pourquoi inversé : abcsisse = collone 
-            genererTab(objettab, /*Position.suivant(pCour)*/ lpCour.suivant);
+            genererTab(objettab, lpCour.suivant);
 
         }
         for (int i = 0; i < objettab.longueur; i++) {
@@ -197,7 +198,7 @@ public class ProjetJava {
 
     public static int nombreAleat(Random r) {
 
-        //NBALEAT
+        //NBALEA
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("TIRAGE JETON:");

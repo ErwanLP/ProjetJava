@@ -1,28 +1,24 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package projetjava;
 
-/**
- *
- * @author Erwan
- */
 public class Grille {
 
-    String[][] tab;
+// On défini ici les différents attributs de la classe Grille :
+    String[][] tab; // <- On va utiliser un tableau contenant des chaines de caractères
     int longueur;
     int hauteur;
     int nbGrille;
-
+    
     Grille(int nbGrille) {
 
+// On créer la première grille du jeu à l'aide des attributs :
         if (nbGrille == 1) {
             this.tab = new String[12][13];
             this.nbGrille = nbGrille;
             hauteur = 12;
             longueur = 13;
         }
+        
+// On créer la deuxième grille du jeu à l'aide des attributs :
         if (nbGrille == 2) {
             this.tab = new String[10][11];
             this.nbGrille = nbGrille;
