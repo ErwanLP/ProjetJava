@@ -46,6 +46,7 @@ public class ProjetJava {
                 break;
             case 3:
                 regles();
+                menuPrincipale();
                 break;
             case 4:
                 System.out.println("Fin du jeux");
@@ -440,7 +441,7 @@ public class ProjetJava {
         System.out.println("    17       85");
         System.out.println("    18       100");
         System.out.println("    19       150");
-        System.out.println("    20       3000");
+        System.out.println("    20       300");
         
     }
 }
