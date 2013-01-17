@@ -1,22 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package projetjava;
 
-/**
- *
- * @author Erwan
- */
 public class Score {
 
-      // attribut  : tableau dont le score est calculé
+     // Attribut  : tableau dont le score est calculé
     int[] grid;
-    // attribut : tableau des scores en fonction de l'indice qui reflete la taille de la sequance
+    // Attribut : tableau des scores en fonction de l'indice qui reflète la taille de la séquence
     int[] scores = {0, 0, 1, 3, 5, 7, 9, 11, 15, 20, 25, 30, 35, 40, 50, 60, 70, 85, 100, 150, 300};
-    // debut de fin de la sequance etudiée
+    // Début de fin de la séquence étudiée
     int start, end;
-    // cible vers un autre objet Score
+    // Cible vers un autre objet Score
     Score next;
 
     public Score(Score s) {
@@ -35,12 +27,12 @@ public class Score {
         // best : variable qui garde le meilleur score;
         Score best = new Score(this);
         while (!isMaximal()/* tant que la fonction est fausse*/) {
-            //on accremnente this.end qui est la limite superieur de la sequand etudiée ( de l'objet étudier)
+            // On incrémente this.end qui est la limite supérieure de la séquence étudiée ( de l'objet étudié )
             ++this.end;
-            // next est egale a un nouveau objet qui debutera a end (la limite de la dernière sequance etudier) si la fin de la dernière sequence étudier est 
-            // differente de la taille du tableau étudié sinon next est null
+            // next est égale à un nouveau objet qui débutera a end (la limite de la dernière séquence étudiée) si la fin de la dernière séquence étudiée est 
+            // différente de la taille du tableau étudié sinon next est null
             next = (end != grid.length) ? new Score(grid, end) : null;
-            // si la nouvelle valeur est superieur (au niveau du score) a l'ancienne, on la prend comme nouvelle meilleur valeur
+            // Si la nouvelle valeur est superieure (au niveau du score) à l'ancienne, on la prend comme nouvelle meilleur valeur
             if (value() > best.value()) {
                 best = new Score(this);
             }
@@ -50,47 +42,47 @@ public class Score {
     }
 
     public Score(int[] grid) {
-        // constructeur qui rappelle le constructeur precedent avec pour start 0
+        // Constructeur qui rappelle le constructeur précèdent avec pour start 0
         this(grid, 0);
     }
 
     private boolean isMaximal() {
-        // si la limite superieur de la sequence etudiée est egale a la fin du tableau, on return true;
+        // Si la limite supérieure de la séquence étudiée est égale a la fin du tableau, on retourne true;
         if (end == grid.length) {
             return true;
         }
-        // si la sequence est strictement inferieur  2 ou on tombe sur le joker ou 2 nombres consecutifs sont identique alors on return false;
+        // Si la séquence est strictement inferieur  2 ou on tombe sur le joker ou 2 nombres consecutifs sont identiques alors on retourne false;
         if (((end - start) < 2) || (grid[end] == 0) || (grid[end] == grid[end - 1])) {
             return false;
         }
-        // boucle de start a end
+        // Boucle de start a end
         for (int i = start; i != end; ++i) {
-            // si on ne tombe pas sur un joker sur la case étudiée ou la suivante
+            // Si on ne tombe pas sur un joker, sur la case étudiée ou la suivante
             if ((grid[i] != 0) && (grid[i + 1] != 0)) {
-                // et si la case etudiée est  (superieur a la precedante et inferieur a la suivante ) ou inferieur (inferieur à la suivante et superieur a la precedente)
-                // on return true
+                // et si la case étudiée est  (supérieure à la précédente et inférieur à la suivante ) ou (inferieur à la précédente et superieur à la suivante)
+                // on retourne true
                 if (((grid[end] > grid[end - 1]) && (grid[i + 1] < grid[i]))
                         || ((grid[end] < grid[end - 1]) && (grid[i + 1] > grid[i]))) {
                     return true;
                 }
             }
         }
-        // si aucun cas precedent n'est trouvé, on return false
+        // Si aucun des cas précédent n'est trouvé, on retourne false
         return false;
     }
 
     private int value() {
-        // le tableau scores represente le point gagnés par la sequence, on y additionne les points des autres sequances si elles existent;
+        // Le tableau des scores représentent les point gagnés par la séquence, on y additionne les points des autres séquences si elles existent;
         return scores[end - start] + ((next != null) ? next.value() : 0);
     }
 
     private int getEnd() {
-        // fonction qui return l'attribut end d'un objet
+        // Fonction qui return l'attribut end d'un objet
         return end;
     }
 
     public String toString() {
-        // fonction qui affiche le score
+        // Fonction qui affiche le score
         String res = new String("\n seq:[0");
         for (Score i = this; i != null; i = i.next) {
             res = res + ", " + i.getEnd();
