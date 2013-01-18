@@ -394,8 +394,8 @@ public class ProjetJava {
             }
             choixOrdonnee = objettab.tab.length - choixy;
 
-            System.out.println(choixAbscisse);
-            System.out.println(choixOrdonnee);
+            //System.out.println(choixAbscisse);
+            //System.out.println(choixOrdonnee);
             //tab.length - k
             //TRAITEMENT PLACEMENT
             // On regarde que l'enplacement choisi est dans la grille et que cet emplacement en vide (un jeton n'a pas déja été placé)
@@ -435,7 +435,7 @@ public class ProjetJava {
                 while (lpCour.x != 0 || lpCour.y != 0) {
 
                     grilleligne[i] = Integer.parseInt(objettab.tab[lpCour.y][lpCour.x]);
-                    System.out.print(i + "-" + grilleligne[i] + "\t");
+                    //System.out.print(i + "-" + grilleligne[i] + "\t");
                     i++;
                     lpCour = lpCour.suivant;
                 }
