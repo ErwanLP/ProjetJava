@@ -274,7 +274,7 @@ public class ProjetJava {
         //CHOIX PLACEMENT
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------------------------------------------------");
-        System.out.println("SELECTION EMPLACEMENT:");
+        System.out.println("SELECTION EMPLACEMENT (ex A5):");
         int choixAbscisse = 0;
         int choixx = 0;
         int choixy = 0;
@@ -392,7 +392,7 @@ public class ProjetJava {
 
 
             }
-            choixOrdonnee =  objettab.tab.length- choixy;
+            choixOrdonnee = objettab.tab.length - choixy;
 
             System.out.println(choixAbscisse);
             System.out.println(choixOrdonnee);
@@ -425,6 +425,8 @@ public class ProjetJava {
 
     public static void comptagePoint2(Grille objettab, ListePos lpCour, int nbGrille) {
 
+        Scanner sc;
+        int score;
         switch (nbGrille) {
             case 1:
 
@@ -439,7 +441,10 @@ public class ProjetJava {
                 }
                 Score s = new Score(grilleligne);
                 System.out.println();
-                System.out.println(s.value());
+
+                System.out.println("Score de la partie:" + s.value());
+                scoreTotal = scoreTotal + s.value();
+                System.out.println("Score total:" + scoreTotal);
 
                 break;
             case 2:
@@ -713,7 +718,10 @@ public class ProjetJava {
                     scoreBest = scoreCour;
                 }
                 //
-                System.out.println(scoreBest);
+
+                System.out.println("Score de la partie:" + scoreBest);
+                scoreTotal = scoreTotal + scoreBest;
+                System.out.println("Score total:" + scoreTotal);
 
 
 
@@ -735,9 +743,22 @@ public class ProjetJava {
 
                 break;
             case 3:
+                sc = new Scanner(System.in);
+                System.out.println("L'implementation de comptage de point sur cette grille n'est pas faite");
+                System.out.println("Inscriver votre score");
+                score = sc.nextInt();
+                System.out.println("Score de la partie:" + score);
+                scoreTotal = scoreTotal + score;
+                System.out.println("Score total:" + scoreTotal);
+
+
 
                 break;
             case 4:
+                sc = new Scanner(System.in);
+                System.out.println("L'implementation de comptage de point sur cette grille n'est pas faite");
+                System.out.println("Inscriver votre score");
+                score = sc.nextInt();
 
                 break;
 
@@ -916,7 +937,7 @@ public class ProjetJava {
                             valeurFinal = valeurJeton + comptAS - c;
                             System.out.println("Le nouveau jeton est:\t" + valeurFinal);
 
-                            return valeurJeton - comptAS - c;
+                            return valeurJeton + comptAS - c;
                         }
                     }
                     c++;
