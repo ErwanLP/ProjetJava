@@ -7,15 +7,16 @@ public class ProjetJava {
 
     /* joker
      * grille 3 et 4 ->ok
-     * calcule score grile 2
-     * extention + ou -
+     * calcule score grile 2 ->ok
+     * extention + ou - ->ok
      */
-    //a b a lka place de 1/2 (?)
+    //a b a lka place de 1/2 ->ok
     // INITIALISATION VARIABLE
     static int compt = 0;
     static int longueurScore = 0;
     static int[] tabScore = new int[21];
     static int scoreTotal = 0;
+    static int comptAS = 0;
 
     public static void main(String[] args) {
 
@@ -120,8 +121,10 @@ public class ProjetJava {
                 affichertab(objettab);
 // On affiche la grille vierge
                 int valeurJeton = nombreAleat(r);
+                valeurJeton = actionSpeciale(valeurJeton);
 // On affecte un jeton du tabeau des jetons à valeurJeton
-                PlacementRobot(objettab, lp, valeurJeton);
+                Placement(objettab, lp, valeurJeton);
+                //PlacementRobot(objettab, lp, valeurJeton);
             } while (verifTab(objettab));
 // Tant que la grille n'est pas remplie, on place dans une case d'une grille donnée le jeton tiré
             affichertab(objettab);
@@ -182,8 +185,48 @@ public class ProjetJava {
             objettab.tab[objettab.tab.length - k][0] = String.valueOf(k);
         }
         for (int l = 1; l < objettab.longueur - 1; l++) {
+            switch (l) {
+                case 1:
+                    objettab.tab[0][l + 1] = "A";
+                    break;
+                case 2:
+                    objettab.tab[0][l + 1] = "B";
+                    break;
+                case 3:
+                    objettab.tab[0][l + 1] = "C";
+                    break;
+                case 4:
+                    objettab.tab[0][l + 1] = "D";
+                    break;
+                case 5:
+                    objettab.tab[0][l + 1] = "E";
+                    break;
+                case 6:
+                    objettab.tab[0][l + 1] = "F";
+                    break;
+                case 7:
+                    objettab.tab[0][l + 1] = "G";
+                    break;
+                case 8:
+                    objettab.tab[0][l + 1] = "H";
+                    break;
+                case 9:
+                    objettab.tab[0][l + 1] = "I";
+                    break;
+                case 10:
+                    objettab.tab[0][l + 1] = "J";
+                    break;
+                case 11:
+                    objettab.tab[0][l + 1] = "K";
+                    break;
+                default:
+                    objettab.tab[0][l + 1] = String.valueOf(l);
+                    break;
+            }
 
-            objettab.tab[0][l + 1] = String.valueOf(l);
+
+
+            //objettab.tab[0][l + 1] = String.valueOf(l);
         }
     }
 
@@ -232,13 +275,127 @@ public class ProjetJava {
         Scanner sc = new Scanner(System.in);
         System.out.println("-----------------------------------------------------------------------------------------------------");
         System.out.println("SELECTION EMPLACEMENT:");
-        int choixAbscisse;
-        int choixOrdonnee;
-        do {
-            System.out.println("Choix de l'Abscisse du Jeton : ");
-            choixAbscisse = sc.nextInt() + 1;
-            System.out.println("Choix de l'Ordonnée du Jeton");
-            choixOrdonnee = objettab.tab.length - sc.nextInt();
+        int choixAbscisse = 0;
+        int choixx = 0;
+        int choixy = 0;
+        int choixOrdonnee = 0;
+        String choixEmplacement;
+        char caractere;
+        do {/*
+             System.out.println("Choix de l'Abscisse du Jeton : ");
+             choixAbscisse = sc.nextInt() + 1;
+             System.out.println("Choix de l'Ordonnée du Jeton");
+             choixOrdonnee = objettab.tab.length - sc.nextInt();
+             * */
+            System.out.println("Enplacement de Jeton :");
+            choixEmplacement = sc.nextLine();
+            String as = "A";
+            char a = as.charAt(0);
+            String bs = "B";
+            char b = bs.charAt(0);
+            String cs = "C";
+            char c = cs.charAt(0);
+            String ds = "D";
+            char d = ds.charAt(0);
+            String es = "E";
+            char e = es.charAt(0);
+            String fs = "F";
+            char f = fs.charAt(0);
+            String gs = "G";
+            char g = gs.charAt(0);
+            String hs = "H";
+            char h = hs.charAt(0);
+            String is = "I";
+            char i = is.charAt(0);
+            String js = "J";
+            char j = js.charAt(0);
+            String ks = "K";
+            char k = ks.charAt(0);
+
+            if (choixEmplacement.length() == 2) {
+                caractere = choixEmplacement.charAt(0);
+                if (caractere == a) {
+                    choixAbscisse = 2;
+                }
+                if (caractere == b) {
+                    choixAbscisse = 3;
+                }
+                if (caractere == c) {
+                    choixAbscisse = 4;
+                }
+                if (caractere == d) {
+                    choixAbscisse = 5;
+                }
+                if (caractere == e) {
+                    choixAbscisse = 6;
+                }
+                if (caractere == f) {
+                    choixAbscisse = 7;
+                }
+                if (caractere == g) {
+                    choixAbscisse = 8;
+                }
+                if (caractere == h) {
+                    choixAbscisse = 9;
+                }
+                if (caractere == i) {
+                    choixAbscisse = 10;
+                }
+                if (caractere == j) {
+                    choixAbscisse = 11;
+                }
+                if (caractere == k) {
+                    choixAbscisse = 12;
+                }
+
+                choixy = Integer.parseInt(String.valueOf(choixEmplacement.charAt(1)));
+
+            }
+
+            if (choixEmplacement.length() == 3) {
+                caractere = choixEmplacement.charAt(0);
+                if (caractere == a) {
+                    choixAbscisse = 2;
+                }
+                if (caractere == b) {
+                    choixAbscisse = 3;
+                }
+                if (caractere == c) {
+                    choixAbscisse = 4;
+                }
+                if (caractere == d) {
+                    choixAbscisse = 5;
+                }
+                if (caractere == e) {
+                    choixAbscisse = 6;
+                }
+                if (caractere == f) {
+                    choixAbscisse = 7;
+                }
+                if (caractere == g) {
+                    choixAbscisse = 8;
+                }
+                if (caractere == h) {
+                    choixAbscisse = 9;
+                }
+                if (caractere == i) {
+                    choixAbscisse = 10;
+                }
+                if (caractere == j) {
+                    choixAbscisse = 11;
+                }
+                if (caractere == k) {
+                    choixAbscisse = 12;
+                }
+
+                choixy = Integer.parseInt(String.valueOf(choixEmplacement.charAt(1))) * 10 + Integer.parseInt(String.valueOf(choixEmplacement.charAt(2)));
+
+
+            }
+            choixOrdonnee =  objettab.tab.length- choixy;
+
+            System.out.println(choixAbscisse);
+            System.out.println(choixOrdonnee);
             //tab.length - k
             //TRAITEMENT PLACEMENT
             // On regarde que l'enplacement choisi est dans la grille et que cet emplacement en vide (un jeton n'a pas déja été placé)
@@ -697,6 +854,87 @@ public class ProjetJava {
 
 
 
+    }
+
+    public static int actionSpeciale(int valeurJeton) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----------------------------------------------------------------------------------------------------");
+        System.out.println("ACTION SPECIALE:");
+        System.out.println("Enter pour passer l'action speciale");
+        System.out.println("+ ou - pour activer l'action Speciale");
+        String choix = sc.nextLine();
+        int i;
+        int c;
+        int j;
+        int valeurFinal;
+        switch (choix) {
+            case "":
+                System.out.println("La valeur du jeton reste\t" + valeurJeton);
+                return valeurJeton;
+
+            case "+":
+                comptAS++;
+                i = 0;
+                c = 0;
+                j = 0;
+
+                while (Jeton.tabNbAleat[i] != 0) {
+                    i++;
+                }
+                Jeton.tabNbAleat[i] = valeurJeton;
+                while (valeurJeton + comptAS + c < 31) {
+                    for (i = 0; i < Jeton.tabNbAleat.length; i++) {
+                        if (Jeton.tabNbAleat[i] == valeurJeton + comptAS + c) {
+                            Jeton.tabNbAleat[j] = 0;
+                            valeurFinal = valeurJeton + comptAS + c;
+                            System.out.println("Le nouveau jeton est:\t" + valeurFinal);
+
+                            return valeurJeton + comptAS + c;
+                        }
+                    }
+                    c++;
+                }
+                return 30;
+
+
+
+            case "-":
+                comptAS--;
+                i = 0;
+                c = 0;
+                j = 0;
+
+                while (Jeton.tabNbAleat[i] != 0) {
+                    i++;
+                }
+                Jeton.tabNbAleat[i] = valeurJeton;
+                while (valeurJeton + comptAS - c > 0) {
+                    for (i = 0; i < Jeton.tabNbAleat.length; i++) {
+                        if (Jeton.tabNbAleat[i] == valeurJeton + comptAS - c) {
+                            Jeton.tabNbAleat[j] = 0;
+                            valeurFinal = valeurJeton + comptAS - c;
+                            System.out.println("Le nouveau jeton est:\t" + valeurFinal);
+
+                            return valeurJeton - comptAS - c;
+                        }
+                    }
+                    c++;
+                }
+                return 1;
+
+
+
+
+
+        }
+
+
+
+
+
+
+        return valeurJeton;
     }
 
     public static void regles() {
