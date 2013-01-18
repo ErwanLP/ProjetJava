@@ -16,7 +16,8 @@ public class ProjetJava {
     static int longueurScore = 0;
     static int[] tabScore = new int[21];
     static int scoreTotal = 0;
-    static int comptAS = 0;
+    static int comptASm = 0;
+    static int comptASp = 0;
 
     public static void main(String[] args) {
 
@@ -895,7 +896,7 @@ public class ProjetJava {
                 return valeurJeton;
 
             case "+":
-                comptAS++;
+                comptASp++;
                 i = 0;
                 c = 0;
                 j = 0;
@@ -904,14 +905,14 @@ public class ProjetJava {
                     i++;
                 }
                 Jeton.tabNbAleat[i] = valeurJeton;
-                while (valeurJeton + comptAS + c < 31) {
+                while (valeurJeton + comptASp + c < 31) {
                     for (i = 0; i < Jeton.tabNbAleat.length; i++) {
-                        if (Jeton.tabNbAleat[i] == valeurJeton + comptAS + c) {
+                        if (Jeton.tabNbAleat[i] == valeurJeton + comptASp + c) {
                             Jeton.tabNbAleat[j] = 0;
-                            valeurFinal = valeurJeton + comptAS + c;
+                            valeurFinal = valeurJeton + comptASp + c;
                             System.out.println("Le nouveau jeton est:\t" + valeurFinal);
 
-                            return valeurJeton + comptAS + c;
+                            return valeurJeton + comptASp + c;
                         }
                     }
                     c++;
@@ -921,7 +922,7 @@ public class ProjetJava {
 
 
             case "-":
-                comptAS--;
+                comptASm--;
                 i = 0;
                 c = 0;
                 j = 0;
@@ -930,14 +931,14 @@ public class ProjetJava {
                     i++;
                 }
                 Jeton.tabNbAleat[i] = valeurJeton;
-                while (valeurJeton + comptAS - c > 0) {
+                while (valeurJeton + comptASm - c > 0) {
                     for (i = 0; i < Jeton.tabNbAleat.length; i++) {
-                        if (Jeton.tabNbAleat[i] == valeurJeton + comptAS - c) {
+                        if (Jeton.tabNbAleat[i] == valeurJeton + comptASm - c) {
                             Jeton.tabNbAleat[j] = 0;
-                            valeurFinal = valeurJeton + comptAS - c;
+                            valeurFinal = valeurJeton + comptASm - c;
                             System.out.println("Le nouveau jeton est:\t" + valeurFinal);
 
-                            return valeurJeton + comptAS - c;
+                            return valeurJeton + comptASm - c;
                         }
                     }
                     c++;
